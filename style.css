@@ -1,0 +1,30 @@
+.error
+{
+	color: red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+table.db-table
+{
+	width: 1500px;
+	margin: center;
+	border: 1px;
+	color: black;
+	padding: 0px;
+}
+
+table.db-table th
+{
+	background-color: gray;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+
+table.db-table td
+{
+	background-color: white;
+	padding: 1px;
+	border: 1px solid #ccc;
+}
+
