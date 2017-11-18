@@ -25,52 +25,31 @@
 </head>
 
 <body>
+	<section id="login">
+    	<div class="container">
+    		<div class="row">
+    	    	<div class="col-xs-12">
+        	    	<div class="form-wrap">               
+						<h1>Witamy w księgarni</h1>
+							<form role="form" action="login.php" method="POST" id="login-form" autocomplete="off">
+								<div class="form-group">		
+									<label for="login" class="sr-only">Login</label>
+									<input type="text" name="login" id="email" class="form-control" placeholder="Login">			
+								</div>
+								<div class="form-group">					
+									<label for="password" class="sr-only">Password</label>
+									<input type="password" name="password" id="key" class="form-control" placeholder="Hasło">			
+								</div>
+									<input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Zaloguj">
+							</form>	
+							<p class="forget">Jeśli nie posiadasz konta <a href="register.php">zarejestruj się!</a></p>                    
+							<hr>
+					</div>
+				</div> <!-- /.col-xs-12 -->
+    		</div> <!-- /.row -->   
+		</div> <!-- /.container -->
+	</section>
 
-<section id="login">
-    
-<div class="container">
-    	
-<div class="row">
-    	    
-<div class="col-xs-12">
-        	    
-<div class="form-wrap">
-                
-<h1>Witamy w księgarni</h1>
-		<form role="form" action="login.php" method="POST" id="login-form" autocomplete="off">
-			<div class="form-group">
-                            
-				<label for="login" class="sr-only">Login</label>
-                            
-				<input type="text" name="login" id="email" class="form-control" placeholder="Login">
-                        
-			</div>
-
-			<div class="form-group">
-                            
-				<label for="password" class="sr-only">Password</label>
-                            
-				<input type="password" name="password" id="key" class="form-control" placeholder="Hasło">
-                        
-			</div>
-
-			<input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Zaloguj">
-
-		</form>
-		<p class="forget">Jeśli nie posiadasz konta <a href="register.php">zarejestruj się!</a></p>                    
-<hr>
-        	    
-</div>
-    		
-</div> <!-- /.col-xs-12 -->
-    	
-</div> <!-- /.row -->
-    
-</div> <!-- /.container -->
-
-</section>
-
-	
 <?php
 	if(isset($_SESSION['error']))	echo $_SESSION['error'];											//wyświetlenie informacji o niepoprawnych danych logowania w przypadku błędnych danych
 ?>
