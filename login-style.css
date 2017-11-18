@@ -1,8 +1,10 @@
 /*    --------------------------------------------------
 	:: Login Section
 	-------------------------------------------------- */
-body {
-    background: url('http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg') fixed;
+html {
+    background: url('http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #login {
