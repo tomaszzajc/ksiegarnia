@@ -1,6 +1,4 @@
 <?php
-	session_start();
-	
 	if(!isset($_SESSION['loggedin']))																	//odeslanie do strony index.php jesli nie wykryto aktywnej sesji
 	{
 		header('Location: index.php');
@@ -14,33 +12,18 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatibile" content="IE=edge,chrome=1" />
 	<link rel="stylesheet" href="style.css" type="text/css">
-	<title>Projekt WWSIS</title>
+	<title>Księgarnia</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+	</style>
 </head>
 
 <body>
 
-	<?php
-		echo "<p>Witaj ".$_SESSION['username'].'! 
-		<input type="button" value="Wyloguj" onclick=window.location.href="logout.php" />
-		<input type="button" value="Wyloguj i zeruj cookies" onclick=window.location.href="logoutnocookies.php" /> <br /><br />';
-		
-		if(isset($_COOKIE['visit']) && ($_COOKIE['visit']!=1))
-		{
-			$visitno = intval($_COOKIE['visit']);
-			//$visitno++;
-			setcookie("visit", "$visitno", time()+3600*24);
-			echo "To są twoje $visitno odwiedziny! Witaj ponownie!";
-		}
-		else
-		{
-			setcookie("visit", "1", time()+3600*24);
-			echo "To jest Twoja 1-sza wizyta!";
-		}
-	?>
-
-	<br /><br />
-	<input type="button" value="Wyświetl wszystkie" onclick="window.location.href='show.php'" />
-	<input type="button" value="Szukaj" onclick="window.location.href='search.php'" />
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
@@ -50,8 +33,6 @@
 ?>
 	<br /><br />
 
-    <table class="db-table">
-        <tr>
         <?php
 		
             ini_set("display_errors", 0);
@@ -63,60 +44,62 @@
             
 			$result = mysqli_query($connection,'SELECT * FROM books') or die('Nie można wyświetlić tabeli');
 			$quantity = mysqli_num_rows($result);
-            echo "znaleziono: ".$quantity;
-			
+			echo '<div class=w3-row-padding>';
+			$wiersz=0;
 			if ($quantity>=1)
-			{
-echo<<<END
-<th class="db-table">Okładka</th>
-<th class="db-table">Seria</th>
-<th class="db-table">Cykl</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Wydawca</th>
-<th class="db-table">Rok wydania</th>
-<th class="db-table">Opis</th>
-<th class="db-table">ISBN</th>
-<th class="db-table">Ocena</th>
-</tr><tr>
-END;
-			}
+			{	
+				for ($i = 1; $i <= $quantity; $i++)
+				{
+					if($wiersz==4){
+						ECHO '<div class="w3-row-padding">';
+					}	
 
-			for ($i = 1; $i <= $quantity; $i++) 
-			{		
-			$row = mysqli_fetch_assoc($result);
-			$a0 = "$row[imageurl]";
-			$a1 = "$row[seriestitle]";
-			$a2 = "$row[subseriestitle]";
-			$a3 = "$row[volumetitle]";
-			$a4 = "$row[volumeno]";
-			$a5 = "$row[author]";
-			$a6 = "$row[publisher]";
-			$a7 = "$row[year]";
-			$a8 = "$row[description]";
-			$a9 = "$row[isbn]";
-			$a10 = "$row[rating]";
+					$row = mysqli_fetch_assoc($result);
+					$a0 = "$row[imageurl]";
+					$a1 = "$row[seriestitle]";
+					$a2 = "$row[subseriestitle]";
+					$a3 = "$row[volumetitle]";
+					$a4 = "$row[volumeno]";
+					$a5 = "$row[author]";
+					$a6 = "$row[publisher]";
+					$a7 = "$row[year]";
+					$a8 = "$row[description]";
+					$a9 = "$row[isbn]";
+					$a10 = "$row[rating]";
+					$iloscZnakow=strlen($a8);
+					$skraca='252';
+					if ($iloscZnakow>$skraca) {
+					  $ucina = $skraca-$iloscZnakow;
+					  $a8 = substr($a8, 0, $ucina);
+					  $a8 = $a8.'...';
+					}
+					
+					echo'<div class="w3-quarter w3-container w3-margin-bottom">'.
+					'<img src="/ksiegarnia/images/'.$a0.
+					'" alt="Brak okładki" style="width:100%" class="w3-hover-opacity">
+							<div class="w3-container w3-white">
+								  <p><b>Seria: </b>'.$a1.'</p>
+								  <p><b>Tytuł: </b>'.$a3.'</p>
+								  <p><b>Wydawnictwo: </b>'.$a6.'</p>
+								  <p><b>Autor </b>'.$a5.'</p>
+								  <p><b>Ocena: </b>'.$a10.'</p>
+								  <p><b>Opis: </b><br>'.$a8.'<a href=""> więcej.</a></p>
+							</div>
+					  	</div>';
+					
 
-echo<<<END
-<td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
-<td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="100px">$a2</td>
-<td class="db-table" width="100px">$a3</td>
-<td class="db-table" width="50px">$a4</td>
-<td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="200px">$a6</td>
-<td class="db-table" width="50px">$a7</td>
-<td class="db-table" width="600px">$a8</td>
-<td class="db-table" width="50px">$a9</td>
-<td class="db-table" width="50px">$a10</td>
-</tr><tr>
-END;
+
+						if($wiersz==4){
+							$wiersz = 0;
+							ECHO '</div>';
+						}else{
+							$wiersz++; 
+						}
+
+				}	
 			}
 		?>
-		
-		</tr>
-	</table>
+
 
 </body>
 
