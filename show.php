@@ -78,7 +78,7 @@ echo<<<END
 <th class="db-table">Rok wydania</th>
 <th class="db-table">Opis</th>
 <th class="db-table">ISBN</th>
-<th class="db-table">Ocena</th>
+<th class="db-table">Cena</th>
 </tr><tr>
 END;
 			}
@@ -96,7 +96,7 @@ END;
 			$a7 = "$row[year]";
 			$a8 = "$row[description]";
 			$a9 = "$row[isbn]";
-			$a10 = "$row[rating]";
+			$a10 = "$row[price]";
 
 echo<<<END
 <td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>

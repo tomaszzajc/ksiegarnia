@@ -74,7 +74,7 @@
 	$a7 = "$row[year]";
 	$a8 = "$row[description]";
 	$a9 = "$row[isbn]";
-	$a10 = "$row[rating]";
+	$a10 = "$row[price]";
 	$a11 = "$row[bookid]";
 ?>
 
@@ -88,7 +88,7 @@
 		Rok wydania: <input type="text" name="year" value="<?php echo $a7; ?>"><br /><br />
 		Opis: <textarea rows="10" cols="100" name="description"><?php echo $a8; ?></textarea><br /><br />
 		ISBN: <input type="text" name="isbn" value="<?php echo $a9; ?>"><br /><br />
-		Ocena: <input type="text" name="rating" value="<?php echo $a10; ?>"><br /><br />
+		Cena: <input type="text" name="price" value="<?php echo $a10; ?>"><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		<input type="hidden" name="bookid" value="<?php echo $a11; ?>">
 		<input type="submit" name="edit" value="Popraw książkę">
@@ -116,7 +116,7 @@
 			$year=$_POST["year"];
 			$description=$_POST["description"];
 			$isbn=$_POST["isbn"];
-			$rating=$_POST["rating"];
+			$price=$_POST["price"];
 			$bookid=$_POST["bookid"];
 			$img=$_POST["imageurl"];
 			
@@ -138,7 +138,7 @@
 			year=$year,
 			description='$description',
 			isbn=$isbn,
-			rating=$rating,
+			price=$price,
 			imageurl='$img' 
 			WHERE bookid=$bookid";
 			}

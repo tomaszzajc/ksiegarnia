@@ -103,7 +103,7 @@ echo<<<END
 <th class="db-table">Rok wydania</th>
 <th class="db-table">Opis</th>
 <th class="db-table">ISBN</th>
-<th class="db-table">Ocena</th>
+<th class="db-table">Cena</th>
 <th class="db-table">Edycja rekordu</th>
 </tr><tr>
 END;
@@ -122,7 +122,7 @@ END;
 					$a7 = "$row[year]";
 					$a8 = "$row[description]";
 					$a9 = "$row[isbn]";
-					$a10 = "$row[rating]";
+					$a10 = "$row[price]";
 					$a11 = "$row[bookid]";
 
 echo<<<END

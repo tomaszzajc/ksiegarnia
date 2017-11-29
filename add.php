@@ -61,7 +61,7 @@
 		Rok wydania: <input type="text" name="year"><br /><br />
 		Opis: <textarea rows="10" cols="100" name="description"></textarea><br /><br />
 		ISBN: <input type="text" name="isbn"><br /><br />
-		Ocena: <input type="text" name="rating"><br /><br />
+		Cena: <input type="text" name="price"><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		 <input type="submit" name="add" value="Dodaj książkę">
 	 </form>
@@ -88,7 +88,7 @@
 			$year=$_POST["year"];
 			$description=$_POST["description"];
 			$isbn=$_POST["isbn"];
-			$rating=$_POST["rating"];
+			$price=$_POST["price"];
 			
 			$path=$path.$_FILES['imageurl']['name'];
 				
@@ -98,8 +98,8 @@
 			
 				$img=$_FILES['imageurl']['name'];
 				
-				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, rating, imageurl)
-				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', $isbn, $rating, '$img')";	
+				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, price, imageurl)
+				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', $isbn, $price, '$img')";	
 			}
 			else
 			{
@@ -113,7 +113,7 @@
 			else
 			{
 				echo "Nie udało się utworzyć nowego rekordu! Proszę wypełnić wszystkie pola!";
-				//echo "Error: " . $insert . "<br>" . mysqli_error($connection);
+				echo "Error: " . $insert . "<br>" . mysqli_error($connection);
 			}
 			
 			mysqli_close($connection);
