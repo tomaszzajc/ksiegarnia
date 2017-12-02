@@ -47,46 +47,12 @@
 			echo '<div class=w3-row-padding>';
 			$wiersz=0;
 			if ($quantity>=1)
-<<<<<<< HEAD
-			{
-echo<<<END
-<th class="db-table">Okładka</th>
-<th class="db-table">Seria</th>
-<th class="db-table">Cykl</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Wydawca</th>
-<th class="db-table">Rok wydania</th>
-<th class="db-table">Opis</th>
-<th class="db-table">ISBN</th>
-<th class="db-table">Cena</th>
-</tr><tr>
-END;
-			}
-
-			for ($i = 1; $i <= $quantity; $i++) 
-			{		
-			$row = mysqli_fetch_assoc($result);
-			$a0 = "$row[imageurl]";
-			$a1 = "$row[seriestitle]";
-			$a2 = "$row[subseriestitle]";
-			$a3 = "$row[volumetitle]";
-			$a4 = "$row[volumeno]";
-			$a5 = "$row[author]";
-			$a6 = "$row[publisher]";
-			$a7 = "$row[year]";
-			$a8 = "$row[description]";
-			$a9 = "$row[isbn]";
-			$a10 = "$row[price]";
-=======
 			{	
 				for ($i = 1; $i <= $quantity; $i++)
 				{
 					if($wiersz==4){
 						ECHO '<div class="w3-row-padding">';
 					}	
-
 					$row = mysqli_fetch_assoc($result);
 					$a0 = "$row[imageurl]";
 					$a1 = "$row[seriestitle]";
@@ -120,16 +86,12 @@ END;
 							</div>
 					  	</div>';
 					
->>>>>>> 28add5307c7fa1011d96355228d30b40811eab65
-
-
 						if($wiersz==4){
 							$wiersz = 0;
 							ECHO '</div>';
 						}else{
 							$wiersz++; 
 						}
-
 				}	
 			}
 		?>
