@@ -84,7 +84,7 @@
 								<p><b>Autor </b>'.$a5.'</p>
 								<p><b>Cena: </b>'.$a10.'</p>
 								<p><form action="add_to_cart.php" method="POST">
-									<input type="hidden" name="bookid" value="$a11">
+									<input type="hidden" name="bookid" value='.$a11.'>
 									<input type="submit" value="Dodaj do koszyka">
 								</form></p>
 								  <p><b>Opis: </b><br>'.$a8.'<a href=""> więcej.</a></p>

@@ -66,7 +66,7 @@
 			//$result = mysqli_query($connection,"SELECT * FROM sessioncart WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
 			
 			$userid = $_SESSION['userid'];
-			$result = mysqli_query($connection,"SELECT * FROM sessioncart INNER JOIN books ON sessioncart.booksid=books.id WHERE sessioncart.userid='$userid'") or die('Nie można wyświetlić tabeli');
+			$result = mysqli_query($connection,"SELECT * FROM sessioncart JOIN books ON books.bookid = sessioncart.bookid WHERE sessioncart.userid='$userid'") or die('Nie można wyświetlić tabeli');
 			
 			$quantity = mysqli_num_rows($result);
             echo "Ksiązki w koszyku: ".$quantity;
