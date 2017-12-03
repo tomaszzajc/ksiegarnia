@@ -89,14 +89,7 @@
     </div>
     </div>
   </header>
-	<?php
-		if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
-		{
-		echo '<input type="button" value="Dodaj" onclick=window.location.href="add.php" />
-		<input type="button" value="Popraw" onclick=window.location.href="update.php" />
-		<input type="button" value="Usuń" onclick=window.location.href="delete.php" />';
-		}
-	?>
+
 
 <?php include 'show.php';?>
 
