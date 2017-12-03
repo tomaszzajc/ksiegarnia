@@ -74,16 +74,11 @@
 			if ($quantity>=1)
 			{
 echo<<<END
-<th class="db-table">Okładka</th>
 <th class="db-table">Seria</th>
-<th class="db-table">Cykl</th>
 <th class="db-table">Tytuł</th>
 <th class="db-table">Tom</th>
 <th class="db-table">Autor</th>
-<th class="db-table">Wydawca</th>
-<th class="db-table">Rok wydania</th>
-<th class="db-table">Opis</th>
-<th class="db-table">ISBN</th>
+<th class="db-table">Ilość</th>
 <th class="db-table">Cena</th>
 </tr><tr>
 END;
@@ -92,31 +87,21 @@ END;
 			for ($i = 1; $i <= $quantity; $i++) 
 			{		
 			$row = mysqli_fetch_assoc($result);
-			$a0 = "$row[imageurl]";
 			$a1 = "$row[seriestitle]";
-			$a2 = "$row[subseriestitle]";
-			$a3 = "$row[volumetitle]";
-			$a4 = "$row[volumeno]";
-			$a5 = "$row[author]";
-			$a6 = "$row[publisher]";
-			$a7 = "$row[year]";
-			$a8 = "$row[description]";
-			$a9 = "$row[isbn]";
-			$a10 = "$row[price]";
-			$a11 = "$row[bookid]";
+			$a2 = "$row[volumetitle]";
+			$a3 = "$row[volumeno]";
+			$a4 = "$row[author]";
+			$a5 = "$row[quantity]";
+			$a6 = "$row[price]";
+			$a7 = "$row[bookid]";
 
 echo<<<END
-<td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
 <td class="db-table" width="100px">$a1</td>
 <td class="db-table" width="100px">$a2</td>
-<td class="db-table" width="100px">$a3</td>
-<td class="db-table" width="50px">$a4</td>
-<td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="200px">$a6</td>
-<td class="db-table" width="50px">$a7</td>
-<td class="db-table" width="600px">$a8</td>
-<td class="db-table" width="50px">$a9</td>
-<td class="db-table" width="50px">$a10</td>
+<td class="db-table" width="50px">$a3</td>
+<td class="db-table" width="100px">$a4</td>
+<td class="db-table" width="50px">$a5</td>
+<td class="db-table" width="50px">$a6</td>
 </tr><tr>
 END;
 			}
