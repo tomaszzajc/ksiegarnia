@@ -130,7 +130,15 @@
 			
 			$img=$_FILES['imageurl']['name'];
 				
-			$update="UPDATE books SET 
+
+			}else{
+				$img='brak.png';
+			}
+			//else
+			//{
+			//	echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
+			//}
+						$update="UPDATE books SET 
 			seriestitle='$seriestitle',
 			subseriestitle='$subseriestitle',
 			volumetitle='$volumetitle',
@@ -139,19 +147,14 @@
 			publisher='$publisher',
 			year=$year,
 			description='$description',
-			isbn=$isbn,
+			isbn='$isbn',
 			price=$price,
 			imageurl='$img' 
 			WHERE bookid=$bookid";
-			}
-			else
-			{
-				echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
-			}
 			
 			if (mysqli_query($connection, $update))
 			{
-				echo "Utworzono nowy rekord!";
+				echo "Poprawiono rekord!";
 			}
 			else
 			{
@@ -159,7 +162,36 @@
 				echo "Error: " . $update . "<br>" . mysqli_error($connection);
 			}
 			
+			
+			
 			mysqli_close($connection);
+			
+			
+	$bookid = $_POST['bookid'];
+	
+	require_once "connect.php";
+			
+	$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
+	mysqli_query($connection, "SET CHARSET utf8");
+	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
+	mysqli_select_db($connection, $db_name);
+			
+	$query = mysqli_query($connection, "SELECT * FROM books WHERE bookid LIKE '$bookid'") or die("Nie udało się wyszukać!");
+	
+	$row = mysqli_fetch_assoc($query);
+	$a0 = "$row[imageurl]";
+	$a1 = "$row[seriestitle]";
+	$a2 = "$row[subseriestitle]";
+	$a3 = "$row[volumetitle]";
+	$a4 = "$row[volumeno]";
+	$a5 = "$row[author]";
+	$a6 = "$row[publisher]";
+	$a7 = "$row[year]";
+	$a8 = "$row[description]";
+	$a9 = "$row[isbn]";
+	$a10 = "$row[price]";
+	$a11 = "$row[bookid]";
+
 		}
 	 ?>
  

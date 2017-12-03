@@ -93,20 +93,21 @@
 			$price=$_POST["price"];
 			
 			$path=$path.$_FILES['imageurl']['name'];
-				
 			if(move_uploaded_file($_FILES['imageurl']['tmp_name'],$path))
 			{
 				echo " ".basename($_FILES['imageurl']['name'])." został wgrany<br/>";
-			
 				$img=$_FILES['imageurl']['name'];
 				
+			}else
+				{$img='brak.png';}
+				
+			
+				
+				
 				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, price, imageurl)
-				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', $isbn, $price, '$img')";	
-			}
-			else
-			{
-				echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
-			}
+				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', '$isbn', $price, '$img')";	
+			
+			
 			
 			if (mysqli_query($connection, $insert))
 			{
