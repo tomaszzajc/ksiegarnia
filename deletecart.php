@@ -19,24 +19,24 @@
 
 <body>
 
-	<?php
-		echo "<p>Witaj ".$_SESSION['username'].'! 
-		<input type="button" value="Wyloguj" onclick=window.location.href="logout.php" />
-		<input type="button" value="Wyloguj i zeruj cookies" onclick=window.location.href="logoutnocookies.php" /> <br /><br />';
-		
-		if(isset($_COOKIE['visit']) && ($_COOKIE['visit']!=1))
-		{
-			$visitno = intval($_COOKIE['visit']);
-			//$visitno++;
-			setcookie("visit", "$visitno", time()+3600*24);
-			echo "To są twoje $visitno odwiedziny! Witaj ponownie!";
-		}
-		else
-		{
-			setcookie("visit", "1", time()+3600*24);
-			echo "To jest Twoja 1-sza wizyta!";
-		}
-	?>
+<?php
+	echo "<p>Witaj ".$_SESSION['username'].'! 
+	<input type="button" value="Wyloguj" onclick=window.location.href="logout.php" />
+	<input type="button" value="Wyloguj i zeruj cookies" onclick=window.location.href="logoutnocookies.php" /> <br /><br />';
+	
+	if(isset($_COOKIE['visit']) && ($_COOKIE['visit']!=1))
+	{
+		$visitno = intval($_COOKIE['visit']);
+		//$visitno++;
+		setcookie("visit", "$visitno", time()+3600*24);
+		echo "To są twoje $visitno odwiedziny! Witaj ponownie!";
+	}
+	else
+	{
+		setcookie("visit", "1", time()+3600*24);
+		echo "To jest Twoja 1-sza wizyta!";
+	}
+?>
 
 	<br /><br />
 	<input type="button" value="Wyświetl wszystkie książki" onclick="window.location.href='show.php'" />
@@ -50,8 +50,32 @@
 ?>
 	<input type="button" value="Twoje konto" onclick="window.location.href='updateuser.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
-	<br /><br />
 
+<?php
+	$id = $_POST['id'];
+	
+	require_once "connect.php";
+			
+	$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
+	mysqli_query($connection, "SET CHARSET utf8");
+	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
+	mysqli_select_db($connection, $db_name);
+			
+	$delete="DELETE FROM sessioncart WHERE id=$id";
+		
+	if (mysqli_query($connection, $delete))
+	{
+		echo "<p>Usunięto rekord!</p>";
+	}
+	else
+	{
+		echo "Nie udało się zaktualizować rekordu! Proszę wypełnić wszystkie pola!";
+		echo "Error: " . $update . "<br>" . mysqli_error($connection);
+	}
+
+	mysqli_close($connection);
+
+?>
     <table class="db-table">
         <tr>
         <?php
@@ -117,7 +141,7 @@ END;
 	
 		</tr>
 	</table>
-
+ 
 </body>
 
 </html>
