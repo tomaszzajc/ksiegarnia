@@ -64,7 +64,8 @@
 					$a7 = "$row[year]";
 					$a8 = "$row[description]";
 					$a9 = "$row[isbn]";
-					$a10 = "$row[rating]";
+					$a10 = "$row[price]";
+					$a11 = "$row[bookid]";
 					$iloscZnakow=strlen($a8);
 					$skraca='252';
 					if ($iloscZnakow>$skraca) {
@@ -77,11 +78,15 @@
 					'<img src="/ksiegarnia/images/'.$a0.
 					'" alt="Brak okładki" style="width:100%" class="w3-hover-opacity">
 							<div class="w3-container w3-white">
-								  <p><b>Seria: </b>'.$a1.'</p>
-								  <p><b>Tytuł: </b>'.$a3.'</p>
-								  <p><b>Wydawnictwo: </b>'.$a6.'</p>
-								  <p><b>Autor </b>'.$a5.'</p>
-								  <p><b>Ocena: </b>'.$a10.'</p>
+								<p><b>Seria: </b>'.$a1.'</p>
+								<p><b>Tytuł: </b>'.$a3.'</p>
+								<p><b>Wydawnictwo: </b>'.$a6.'</p>
+								<p><b>Autor </b>'.$a5.'</p>
+								<p><b>Cena: </b>'.$a10.'</p>
+								<p><form action="add_to_cart.php" method="POST">
+									<input type="hidden" name="bookid" value="$a11">
+									<input type="submit" value="Dodaj do koszyka">
+								</form></p>
 								  <p><b>Opis: </b><br>'.$a8.'<a href=""> więcej.</a></p>
 							</div>
 					  	</div>';
