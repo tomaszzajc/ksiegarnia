@@ -6,80 +6,35 @@
 		header('Location: index.php');
 		exit();
 	}
-?>
 
-<html lang="pl">
+	require_once "connect.php";																			//sprawdzenie czy istnieje plik z danymi do połączenia się z bazą danych
+	$connection = @new mysqli($host, $db_user, $db_password, $db_name);									//pobranie danych dostępowych do połączenia z bazą danych SQL
 
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatibile" content="IE=edge,chrome=1" />
-	<title>Projekt WWSIS</title>
-</head>
-
-<body>
-
-<?php
-	echo "<p>Witaj ".$_SESSION['username'].'! 
-	<input type="button" value="Wyloguj" onclick=window.location.href="logout.php" />
-	<input type="button" value="Wyloguj i zeruj cookies" onclick=window.location.href="logoutnocookies.php" /> <br /><br />';
-	
-	if(isset($_COOKIE['visit']) && ($_COOKIE['visit']!=1))
+	if($connection->connect_errno!=0)																	//sprawdzenie czy udało się połączyć
 	{
-		$visitno = intval($_COOKIE['visit']);
-		//$visitno++;
-		setcookie("visit", "$visitno", time()+3600*24);
-		echo "To są twoje $visitno odwiedziny! Witaj ponownie!";
+		echo "Error: ".$connection->connect_errno;														//wyświetlenie błędu połączenia, gdy nie można się połączyć
 	}
 	else
 	{
-		setcookie("visit", "1", time()+3600*24);
-		echo "To jest Twoja 1-sza wizyta!";
-	}
-?>
-
-	<br /><br />
-	<input type="button" value="Wyświetl wszystkie książki" onclick="window.location.href='show.php'" />
-	<input type="button" value="Szukaj książkę" onclick="window.location.href='search.php'" />
-<?php
-	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
-	{
-	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
-	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" /><br />';
-	}
-?>
-	<input type="button" value="Twoje konto" onclick="window.location.href='updateuser.php'" />
-	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
-
-<?php
-	$userid = $_SESSION['userid'];
-	$bookid = $_SESSION['bookid'];
-	//$quantity=$_POST["quantity"];
-			
-	
-	require_once "connect.php";
-			
-	$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
-	mysqli_query($connection, "SET CHARSET utf8");
-	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-	mysqli_select_db($connection, $db_name);
-			
-	$insert="INSERT INTO sessioncart (id, userid, bookid, quantity) VALUES ('NULL', '$userid', '$bookid', '1')";
+		$userid = $_SESSION['userid'];
+		$bookid = $_POST['bookid'];
+		//$quantity=$_POST["quantity"];
 		
-	if (mysqli_query($connection, $insert))
-	{
-		echo "<p>Dodano do koszyka!</p>";
-	}
-	else
-	{
-		echo "Nie udało się dodać do koszyka!<br />";
-		echo "Error: " . $insert . "<br>" . mysqli_error($connection);
+		$insert="INSERT INTO sessioncart (id, userid, bookid, quantity) VALUES ('NULL', '$userid', '$bookid', '1')";
+		
+		if (mysqli_query($connection, $insert))
+		{
+			echo "<p>Dodano do koszyka!</p>";
+			header('Location: cart.php');
+		}
+		else
+		{
+			echo "Nie udało się dodać do koszyka!<br />";
+			echo "Error: " . $insert . "<br>" . mysqli_error($connection);
+		}
+	
+		$connection->close();
 	}
 	
-	unset($_SESSION['bookid']);
 	mysqli_close($connection);
-
 ?>
- 
-</body>
-
-</html>
