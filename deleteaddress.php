@@ -51,7 +51,7 @@
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 
 <?php
-	$bookid = $_POST['bookid'];
+	$addressid = $_POST['addressid'];
 	
 	require_once "connect.php";
 			
@@ -60,7 +60,7 @@
 	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 	mysqli_select_db($connection, $db_name);
 			
-	$delete="DELETE FROM books WHERE bookid=$bookid";
+	$delete="DELETE FROM addresses WHERE addressid=$addressid";
 		
 	if (mysqli_query($connection, $delete))
 	{
@@ -69,7 +69,7 @@
 	else
 	{
 		echo "Nie udało się zaktualizować rekordu! Proszę wypełnić wszystkie pola!";
-		//echo "Error: " . $update . "<br>" . mysqli_error($connection);
+		echo "Error: " . $update . "<br>" . mysqli_error($connection);
 	}
 
 	mysqli_close($connection);

@@ -39,15 +39,17 @@
 	?>
 
 	<br /><br />
-	<input type="button" value="Wyświetl wszystkie" onclick="window.location.href='show.php'" />
-	<input type="button" value="Szukaj" onclick="window.location.href='search.php'" />
+	<input type="button" value="Wyświetl wszystkie książki" onclick="window.location.href='show.php'" />
+	<input type="button" value="Szukaj książkę" onclick="window.location.href='search.php'" />
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
-	echo '<input type="button" value="Dodaj" onclick=window.location.href="add.php" />
-	<input type="button" value="Popraw/Usuń" onclick=window.location.href="update.php" />';
+	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
+	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" /><br />';
 	}
 ?>
+	<input type="button" value="Twoje dane" onclick="window.location.href='updateuser.php'" />
+	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 	<br /><br />
 	
 	<form action="update.php" method="POST">
@@ -86,7 +88,7 @@
 				
 				if($quantity == 0)
 				{
-					echo "Brak książek o podanej wartości!";
+					echo "<br />Brak książek o podanej wartości!";
 				}
 				else
 				{

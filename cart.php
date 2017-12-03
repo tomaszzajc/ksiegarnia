@@ -51,49 +51,28 @@
 	<input type="button" value="Twoje dane" onclick="window.location.href='updateuser.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 	<br /><br />
-	
-	<form action="search.php" method="POST">
-		<input type="text" name="search" placeholder="Szukaj książek..." />
-		<input type="submit" value="Szukaj" />
-	</form>
- 
-	<table class="db-table">
-        <tr>
-		<?php
 
-			//ini_set("display_errors", 0);
-			require_once "connect.php";
-			
-			$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
+    <table class="db-table">
+        <tr>
+        <?php
+		
+            ini_set("display_errors", 0);
+            require_once "connect.php";
+            $connection = mysqli_connect($host, $db_user, $db_password);
 			mysqli_query($connection, "SET CHARSET utf8");
 			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-			mysqli_select_db($connection, $db_name);
+            mysqli_select_db($connection, $db_name);
+            
+			//$result = mysqli_query($connection,"SELECT * FROM sessioncart WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
 			
-			if(isset($_POST['search']))
+			$userid = $_SESSION['userid'];
+			$result = mysqli_query($connection,"SELECT * FROM sessioncart INNER JOIN books ON sessioncart.booksid=books.id WHERE sessioncart.userid='$userid'") or die('Nie można wyświetlić tabeli');
+			
+			$quantity = mysqli_num_rows($result);
+            echo "Ksiązki w koszyku: ".$quantity;
+			
+			if ($quantity>=1)
 			{
-				$searchq = $_POST['search'];
-				$searchq = preg_replace("#[^0-9a-zA-Z]#i","",$searchq);
-				
-				$query = mysqli_query($connection, "SELECT * FROM books WHERE 
-					seriestitle LIKE '%$searchq%' OR
-					subseriestitle LIKE '%$searchq%' OR
-					volumetitle LIKE '%$searchq%' OR
-					author LIKE '%$searchq%' OR
-					publisher LIKE '%$searchq%' OR
-					year LIKE '%$searchq%' OR
-					isbn LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
-				
-				$quantity = mysqli_num_rows($query);
-				echo "znaleziono: ".$quantity;
-				
-				if($quantity == 0)
-				{
-					echo "<br />Brak książek o podanej wartości!";
-				}
-				else
-				{
-					if ($quantity>=1)
-					{
 echo<<<END
 <th class="db-table">Okładka</th>
 <th class="db-table">Seria</th>
@@ -108,22 +87,23 @@ echo<<<END
 <th class="db-table">Cena</th>
 </tr><tr>
 END;
-					}
+			}
 
-					for ($i = 1; $i <= $quantity; $i++) 
-					{		
-					$row = mysqli_fetch_assoc($query);
-					$a0 = "$row[imageurl]";
-					$a1 = "$row[seriestitle]";
-					$a2 = "$row[subseriestitle]";
-					$a3 = "$row[volumetitle]";
-					$a4 = "$row[volumeno]";
-					$a5 = "$row[author]";
-					$a6 = "$row[publisher]";
-					$a7 = "$row[year]";
-					$a8 = "$row[description]";
-					$a9 = "$row[isbn]";
-					$a10 = "$row[price]";
+			for ($i = 1; $i <= $quantity; $i++) 
+			{		
+			$row = mysqli_fetch_assoc($result);
+			$a0 = "$row[imageurl]";
+			$a1 = "$row[seriestitle]";
+			$a2 = "$row[subseriestitle]";
+			$a3 = "$row[volumetitle]";
+			$a4 = "$row[volumeno]";
+			$a5 = "$row[author]";
+			$a6 = "$row[publisher]";
+			$a7 = "$row[year]";
+			$a8 = "$row[description]";
+			$a9 = "$row[isbn]";
+			$a10 = "$row[price]";
+			$a11 = "$row[bookid]";
 
 echo<<<END
 <td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
@@ -139,13 +119,12 @@ echo<<<END
 <td class="db-table" width="50px">$a10</td>
 </tr><tr>
 END;
-					}
-				}
 			}
 		?>
-		</tr>
-	</table>	
 	
+		</tr>
+	</table>
+
 </body>
 
 </html>

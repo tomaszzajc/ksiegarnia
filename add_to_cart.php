@@ -51,7 +51,10 @@
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 
 <?php
-	$bookid = $_POST['bookid'];
+	$userid = $_SESSION['userid'];
+	$bookid = $_SESSION['bookid'];
+	//$quantity=$_POST["quantity"];
+			
 	
 	require_once "connect.php";
 			
@@ -60,18 +63,19 @@
 	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 	mysqli_select_db($connection, $db_name);
 			
-	$delete="DELETE FROM books WHERE bookid=$bookid";
+	$insert="INSERT INTO sessioncart (id, userid, bookid, quantity) VALUES ('NULL', '$userid', '$bookid', '1')";
 		
-	if (mysqli_query($connection, $delete))
+	if (mysqli_query($connection, $insert))
 	{
-		echo "<p>Usunięto rekord!</p>";
+		echo "<p>Dodano do koszyka!</p>";
 	}
 	else
 	{
-		echo "Nie udało się zaktualizować rekordu! Proszę wypełnić wszystkie pola!";
-		//echo "Error: " . $update . "<br>" . mysqli_error($connection);
+		echo "Nie udało się dodać do koszyka!<br />";
+		echo "Error: " . $insert . "<br>" . mysqli_error($connection);
 	}
-
+	
+	unset($_SESSION['bookid']);
 	mysqli_close($connection);
 
 ?>

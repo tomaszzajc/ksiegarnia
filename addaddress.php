@@ -51,29 +51,23 @@
 	<input type="button" value="Twoje dane" onclick="window.location.href='updateuser.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 
-	<br><h2>Dodaj książkę</h2>
+	<br><h2>Dodaj adres</h2>
 	
-	<form action="add.php" method="POST" enctype="multipart/form-data">
-		Seria: <input type="text" name="seriestitle"> 
-		Cykl: <input type="text" name="subseriestitle"> 
-		Tytuł tomu: <input type="text" name="volumetitle"> 
-		Numer tomu: <input type="text" name="volumeno"><br /><br />
-		Autor: <input type="text" name="author"><br /><br />
-		Wydawca: <input type="text" name="publisher"> 
-		Rok wydania: <input type="text" name="year"><br /><br />
-		Opis: <textarea rows="10" cols="100" name="description"></textarea><br /><br />
-		ISBN: <input type="text" name="isbn"><br /><br />
-		Cena: <input type="text" name="price"><br /><br />
-		Okładka: <input type="file" name="imageurl"><br /><br />
-		 <input type="submit" name="add" value="Dodaj książkę">
+	<form action="addaddress.php" method="POST" enctype="multipart/form-data">
+		Odbiorca: <input type="text" name="addresstype"><br /><br />
+		Ulica: <input type="text" name="street"> 
+		Nr domu: <input type="text" name="number"> 
+		Nr mieszkania: <input type="text" name="aptno"><br /><br />
+		Kod pocztowy: <input type="text" name="zipcode">
+		Miasto: <input type="text" name="city"><br /><br />
+		Kraj: <input type="text" name="country"><br /><br />
+		 <input type="submit" name="add" value="Dodaj adres">
 	 </form>
  
 	 <?php
 		ini_set("display_errors", 0);
 		require_once "connect.php";
-		
-		$path="images/";
-		
+			
 		if (isset($_POST["add"]))
 		{
 			$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
@@ -81,45 +75,34 @@
 			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 			mysqli_select_db($connection, $db_name);
 			
-			$seriestitle=$_POST["seriestitle"];
-			$subseriestitle=$_POST["subseriestitle"];
-			$volumetitle=$_POST["volumetitle"];
-			$volumeno=$_POST["volumeno"];
-			$author=$_POST["author"];
-			$publisher=$_POST["publisher"];
-			$year=$_POST["year"];
-			$description=$_POST["description"];
-			$isbn=$_POST["isbn"];
-			$price=$_POST["price"];
+			$userid=$_SESSION['userid'];			
+			$addresstype=$_POST["addresstype"];
+			$street=$_POST["street"];
+			$number=$_POST["number"];
+			$aptno=$_POST["aptno"];
+			$zipcode=$_POST["zipcode"];
+			$city=$_POST["city"];
+			$country=$_POST["country"];
 			
-			$path=$path.$_FILES['imageurl']['name'];
-				
-			if(move_uploaded_file($_FILES['imageurl']['tmp_name'],$path))
-			{
-				echo " ".basename($_FILES['imageurl']['name'])." został wgrany<br/>";
-			
-				$img=$_FILES['imageurl']['name'];
-				
-				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, price, imageurl)
-				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', $isbn, $price, '$img')";	
-			}
-			else
-			{
-				echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
-			}
-			
-			if (mysqli_query($connection, $insert))
-			{
-				echo "Utworzono nowy rekord!";
-			}
-			else
-			{
-				echo "Nie udało się utworzyć nowego rekordu! Proszę wypełnić wszystkie pola!";
-				echo "Error: " . $insert . "<br>" . mysqli_error($connection);
-			}
-			
-			mysqli_close($connection);
+			$insert="INSERT INTO addresses (userid, addresstype, street, number, aptno, zipcode, city, country)
+			VALUES ($userid, '$addresstype', '$street', '$number', '$aptno', '$zipcode', '$city', '$country')";	
 		}
+		else
+		{
+			echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
+		}
+			
+		if (mysqli_query($connection, $insert))
+		{
+			echo "Utworzono nowy rekord!";
+		}
+		else
+		{
+			echo "Nie udało się utworzyć nowego rekordu! Proszę wypełnić wszystkie pola!";
+			echo "Error: " . $insert . "<br>" . mysqli_error($connection);
+		}
+			
+		mysqli_close($connection);
 	 ?>
  
 </body>
