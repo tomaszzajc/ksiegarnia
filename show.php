@@ -45,7 +45,7 @@
 			$result = mysqli_query($connection,'SELECT * FROM books') or die('Nie można wyświetlić tabeli');
 			$quantity = mysqli_num_rows($result);
 			echo '<div class=w3-row-padding>';
-			$wiersz=0;
+			
 			if ($quantity>=1)
 			{	
 				for ($i = 1; $i <= $quantity; $i++)
@@ -86,7 +86,7 @@
 							</div>
 					  	</div>';
 					
-						if($wiersz==4)
+						if($wiersz==3)
 						{
 							$wiersz = 0;
 							ECHO '</div>';
