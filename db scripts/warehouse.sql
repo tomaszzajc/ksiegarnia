@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Lis 2017, 16:10
+-- Czas generowania: 03 Gru 2017, 09:26
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `warehouse` (
 --
 
 --
--- Indexes for table `warehouse`
+-- Indeksy dla tabeli `warehouse`
 --
 ALTER TABLE `warehouse`
   ADD PRIMARY KEY (`id`);
@@ -52,7 +52,8 @@ ALTER TABLE `warehouse`
 -- AUTO_INCREMENT dla tabeli `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

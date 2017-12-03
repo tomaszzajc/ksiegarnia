@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Lis 2017, 16:11
+-- Czas generowania: 03 Gru 2017, 09:25
 -- Wersja serwera: 10.1.22-MariaDB
 -- Wersja PHP: 7.1.4
 
@@ -29,26 +29,35 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `addresses` (
-  `id` int(11) NOT NULL,
+  `addressid` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
-  `addresstype` tinytext NOT NULL,
-  `street` tinytext NOT NULL,
-  `number` tinytext NOT NULL,
-  `aptno` tinytext,
-  `zipcode` tinytext NOT NULL,
-  `city` tinytext NOT NULL,
-  `country` tinytext NOT NULL
+  `addresstype` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL,
+  `street` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL,
+  `number` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL,
+  `aptno` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci,
+  `zipcode` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL,
+  `city` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL,
+  `country` tinytext CHARACTER SET utf16 COLLATE utf16_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `addresses`
+--
+
+INSERT INTO `addresses` (`addressid`, `userid`, `addresstype`, `street`, `number`, `aptno`, `zipcode`, `city`, `country`) VALUES
+(2, 2, 'Praca', 'Krawiecka', '3', '3', '52-149', 'Wrocław', 'Polska'),
+(3, 0, 'Jacek Wolnicki', 'Semaforowa', '93', '2', '52-115', 'Wrocław', 'Polska'),
+(4, 1, 'Jacek Wolnicki', 'Krawiecka', '3', '3', '52-149', 'Wrocław', 'Polska');
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `addresses`
+-- Indeksy dla tabeli `addresses`
 --
 ALTER TABLE `addresses`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`addressid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -58,7 +67,8 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT dla tabeli `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `addressid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

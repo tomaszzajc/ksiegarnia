@@ -25,44 +25,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Struktura tabeli dla tabeli `sessioncart`
 --
 
-CREATE TABLE `users` (
-  `userid` int(11) NOT NULL,
-  `username` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `email` tinytext COLLATE utf8_polish_ci NOT NULL,
-  `password` tinytext COLLATE utf8_polish_ci NOT NULL,
-  `userpriv` tinytext COLLATE utf8_polish_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+CREATE TABLE `sessioncart` (
+  `id` int(11) NOT NULL,
+  `userid` varchar(40) NOT NULL,
+  `bookid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Zrzut danych tabeli `users`
+-- Zrzut danych tabeli `sessioncart`
 --
 
-INSERT INTO `users` (`userid`, `username`, `email`, `password`, `userpriv`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$5SglWCZDrTRXzZHXKBL8oe/nJc3SyLCXHFqAsUQeWOocEBJ.c0q0K', 'admin'),
-(2, 'user', 'user@gmail.com', '$2y$10$6WxNrkRXEpdqNeK1Cau8Q.oJMWEkdbVHM0dR20qiqRHzRh6x9aRju', NULL);
+INSERT INTO `sessioncart` (`id`, `userid`, `bookid`, `quantity`) VALUES
+(20, '1', 2, 1),
+(21, '1', 0, 1);
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indeksy dla tabeli `users`
+-- Indeksy dla tabeli `sessioncart`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`userid`);
+ALTER TABLE `sessioncart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+-- AUTO_INCREMENT dla tabeli `sessioncart`
 --
-ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `sessioncart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
