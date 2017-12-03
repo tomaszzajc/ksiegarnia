@@ -86,10 +86,13 @@
 							</div>
 					  	</div>';
 					
-						if($wiersz==4){
+						if($wiersz==4)
+						{
 							$wiersz = 0;
 							ECHO '</div>';
-						}else{
+						}
+						else
+						{
 							$wiersz++; 
 						}
 				}	
