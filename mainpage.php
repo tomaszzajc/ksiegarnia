@@ -82,10 +82,15 @@
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
     <h1><b>Księgarnia</b></h1>
-    <div class="w3-section w3-bottombar w3-padding-16">
+    <div class="w3-section w3-bottombar w3-padding-16" >
       <span class="w3-margin-right">Filter:</span> 
-      <button class="w3-button w3-white"  onclick="window.location.href='show.php'"><i class="fa fa-th-list w3-margin-right"></i>Wszystkie</button>
-      <button class="w3-button w3-white"  onclick="window.location.href='search.php'"><i class="fa fa-search w3-margin-right"></i>Szukaj</button>
+      <form action="mainpage.php" method="POST"  style="display: inline;">
+        <input type="text"  class="w3-input w3-border" style="width:200px;display: inline;" name="search" placeholder="Szukaj książek..." />
+        <button type="submit" class="w3-button w3-white" style="display: inline;">
+												<i class="fa fa-search w3-margin-right"></i>  Szukaj
+				</button>
+      </form>
+      <button class="w3-button w3-white" style="display: inline;" onclick="window.location.href='show.php'"><i class="fa fa-th-list w3-margin-right"></i>Wszystkie</button>
      <!-- <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button> -->
     </div>
@@ -93,7 +98,7 @@
   </header>
 
 
-<?php include 'show.php';?>
+  <?php include 'show.php';?>
 
 
 <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
@@ -151,7 +156,7 @@
     </div>
   
     <div class="w3-third">
-      <h3>BLOG POSTS</h3>
+      <!--<h3>BLOG POSTS</h3>
       <ul class="w3-ul w3-hoverable">
         <li class="w3-padding-16">
           <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
@@ -163,7 +168,7 @@
           <span class="w3-large">Ipsum</span><br>
           <span>Praes tinci sed</span>
         </li> 
-      </ul>
+      </ul>-->
     </div>
 
     <div class="w3-third">
