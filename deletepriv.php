@@ -52,7 +52,7 @@
 ?>
 
 <?php
-	$bookid = $_POST['bookid'];
+	$userid = $_POST['userid'];
 	
 	require_once "connect.php";
 			
@@ -61,11 +61,11 @@
 	mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
 	mysqli_select_db($connection, $db_name);
 			
-	$delete="DELETE FROM books WHERE bookid=$bookid";
+	$update="UPDATE users SET userpriv='' WHERE userid=$userid";
 		
-	if (mysqli_query($connection, $delete))
+	if (mysqli_query($connection, $update))
 	{
-		echo "<p>Usunięto rekord!</p>";
+		echo "<p>Usunięto uprawnienia!</p>";
 	}
 	else
 	{

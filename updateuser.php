@@ -52,8 +52,8 @@
 	}
 ?>
 	
-	<form action="update.php" method="POST">
-		<input type="text" name="search" placeholder="Szukaj książek..." />
+	<form action="updateuser.php" method="POST">
+		<input type="text" name="search" placeholder="Szukaj użytkownika..." />
 		<input type="submit" value="Szukaj" />
 	</form>
  
@@ -74,38 +74,25 @@
 				$searchq = $_POST['search'];
 				$searchq = preg_replace("#[^0-9a-zA-Z]#i","",$searchq);
 				
-				$query = mysqli_query($connection, "SELECT * FROM books WHERE 
-					seriestitle LIKE '%$searchq%' OR
-					subseriestitle LIKE '%$searchq%' OR
-					volumetitle LIKE '%$searchq%' OR
-					author LIKE '%$searchq%' OR
-					publisher LIKE '%$searchq%' OR
-					year LIKE '%$searchq%' OR
-					isbn LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
+				$query = mysqli_query($connection, "SELECT * FROM users WHERE 
+					username LIKE '%$searchq%' OR
+					email LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
 				
 				$quantity = mysqli_num_rows($query);
 				echo "znaleziono: ".$quantity;
 				
 				if($quantity == 0)
 				{
-					echo "<br />Brak książek o podanej wartości!";
+					echo "<br />Brak użytkowników o podanej wartości!";
 				}
 				else
 				{
 					if ($quantity>=1)
 					{
 echo<<<END
-<th class="db-table">Okładka</th>
-<th class="db-table">Seria</th>
-<th class="db-table">Cykl</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Wydawca</th>
-<th class="db-table">Rok wydania</th>
-<th class="db-table">Opis</th>
-<th class="db-table">ISBN</th>
-<th class="db-table">Cena</th>
+<th class="db-table">Login</th>
+<th class="db-table">Email</th>
+<th class="db-table">Uprawnienia</th>
 <th class="db-table">Edycja rekordu</th>
 </tr><tr>
 END;
@@ -114,39 +101,27 @@ END;
 					for ($i = 1; $i <= $quantity; $i++) 
 					{		
 					$row = mysqli_fetch_assoc($query);
-					$a0 = "$row[imageurl]";
-					$a1 = "$row[seriestitle]";
-					$a2 = "$row[subseriestitle]";
-					$a3 = "$row[volumetitle]";
-					$a4 = "$row[volumeno]";
-					$a5 = "$row[author]";
-					$a6 = "$row[publisher]";
-					$a7 = "$row[year]";
-					$a8 = "$row[description]";
-					$a9 = "$row[isbn]";
-					$a10 = "$row[price]";
-					$a11 = "$row[bookid]";
+					$a0 = "$row[username]";
+					$a1 = "$row[email]";
+					$a2 = "$row[userpriv]";
+					$a3 = "$row[userid]";
 
 echo<<<END
-<td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
+<td class="db-table" width="100px">$a0</td>
 <td class="db-table" width="100px">$a1</td>
 <td class="db-table" width="100px">$a2</td>
-<td class="db-table" width="100px">$a3</td>
-<td class="db-table" width="50px">$a4</td>
-<td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="200px">$a6</td>
-<td class="db-table" width="50px">$a7</td>
-<td class="db-table" width="600px">$a8</td>
-<td class="db-table" width="50px">$a9</td>
-<td class="db-table" width="50px">$a10</td>
 <td class="db-table" width="50px">
-	<form action="edit.php" method="POST">
-	<input type="hidden" name="bookid" value="$a11">
-    <input type="submit" value="Edytuj">
+	<form action="addpriv.php" method="POST">
+	<input type="hidden" name="userid" value="$a3">
+    <input type="submit" value="Nadaj uprawnienia">
 	</form>
-	<form action="delete.php" method="POST">
-	<input type="hidden" name="bookid" value="$a11">
-    <input type="submit" value="Usuń">
+	<form action="deletepriv.php" method="POST">
+	<input type="hidden" name="userid" value="$a3">
+    <input type="submit" value="Usuń uprawnienia">
+	</form>
+	<form action="deleteuser.php" method="POST">
+	<input type="hidden" name="userid" value="$a3">
+    <input type="submit" value="Usuń użytkownika">
 	</form>
 </td>
 </td>
