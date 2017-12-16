@@ -48,7 +48,7 @@
 	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" /><br />';
 	}
 ?>
-	<input type="button" value="Twoje konto" onclick="window.location.href='updateuser.php'" />
+	<input type="button" value="Twoje konto" onclick="window.location.href='myaccount.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 	<br /><br />
 	

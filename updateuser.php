@@ -48,76 +48,116 @@
 	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" /><br />';
 	}
 ?>
-	<input type="button" value="Twoje konto" onclick="window.location.href='updateuser.php'" />
+	<input type="button" value="Twoje konto" onclick="window.location.href='myaccount.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 	<br /><br />
 	
-<table class="db-table">
+	<form action="update.php" method="POST">
+		<input type="text" name="search" placeholder="Szukaj książek..." />
+		<input type="submit" value="Szukaj" />
+	</form>
+ 
+	<table class="db-table">
         <tr>
-        <?php
-		
-            ini_set("display_errors", 0);
-            require_once "connect.php";
-            $connection = mysqli_connect($host, $db_user, $db_password);
+		<?php
+
+			//ini_set("display_errors", 0);
+			require_once "connect.php";
+			
+			$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
 			mysqli_query($connection, "SET CHARSET utf8");
 			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-            mysqli_select_db($connection, $db_name);
-            
-			$userid = $_SESSION['userid'];
-			$result = mysqli_query($connection,"SELECT * FROM addresses WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
-			$quantity = mysqli_num_rows($result);
-            echo "Adresy: ".$quantity;
+			mysqli_select_db($connection, $db_name);
 			
-			if ($quantity>=1)
+			if(isset($_POST['search']))
 			{
+				$searchq = $_POST['search'];
+				$searchq = preg_replace("#[^0-9a-zA-Z]#i","",$searchq);
+				
+				$query = mysqli_query($connection, "SELECT * FROM books WHERE 
+					seriestitle LIKE '%$searchq%' OR
+					subseriestitle LIKE '%$searchq%' OR
+					volumetitle LIKE '%$searchq%' OR
+					author LIKE '%$searchq%' OR
+					publisher LIKE '%$searchq%' OR
+					year LIKE '%$searchq%' OR
+					isbn LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
+				
+				$quantity = mysqli_num_rows($query);
+				echo "znaleziono: ".$quantity;
+				
+				if($quantity == 0)
+				{
+					echo "<br />Brak książek o podanej wartości!";
+				}
+				else
+				{
+					if ($quantity>=1)
+					{
 echo<<<END
-<th class="db-table">Odbiorca</th>
-<th class="db-table">Ulica</th>
-<th class="db-table">Nr domu</th>
-<th class="db-table">Nr mieszkania</th>
-<th class="db-table">Kod pocztowy</th>
-<th class="db-table">Miasto</th>
-<th class="db-table">Kraj</th>
-<th class="db-table">Usuń adres</th>
+<th class="db-table">Okładka</th>
+<th class="db-table">Seria</th>
+<th class="db-table">Cykl</th>
+<th class="db-table">Tytuł</th>
+<th class="db-table">Tom</th>
+<th class="db-table">Autor</th>
+<th class="db-table">Wydawca</th>
+<th class="db-table">Rok wydania</th>
+<th class="db-table">Opis</th>
+<th class="db-table">ISBN</th>
+<th class="db-table">Cena</th>
+<th class="db-table">Edycja rekordu</th>
 </tr><tr>
 END;
-			}
+					}
 
-			for ($i = 1; $i <= $quantity; $i++) 
-			{		
-			$row = mysqli_fetch_assoc($result);
-			$a0 = "$row[addresstype]";
-			$a1 = "$row[street]";
-			$a2 = "$row[number]";
-			$a3 = "$row[aptno]";
-			$a4 = "$row[zipcode]";
-			$a5 = "$row[city]";
-			$a6 = "$row[country]";
-			$a7 = "$row[addressid]";
+					for ($i = 1; $i <= $quantity; $i++) 
+					{		
+					$row = mysqli_fetch_assoc($query);
+					$a0 = "$row[imageurl]";
+					$a1 = "$row[seriestitle]";
+					$a2 = "$row[subseriestitle]";
+					$a3 = "$row[volumetitle]";
+					$a4 = "$row[volumeno]";
+					$a5 = "$row[author]";
+					$a6 = "$row[publisher]";
+					$a7 = "$row[year]";
+					$a8 = "$row[description]";
+					$a9 = "$row[isbn]";
+					$a10 = "$row[price]";
+					$a11 = "$row[bookid]";
 
 echo<<<END
-<td class="db-table" width="100px">$a0</td>
+<td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
 <td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="50px">$a2</td>
-<td class="db-table" width="50px">$a3</td>
+<td class="db-table" width="100px">$a2</td>
+<td class="db-table" width="100px">$a3</td>
 <td class="db-table" width="50px">$a4</td>
 <td class="db-table" width="200px">$a5</td>
 <td class="db-table" width="200px">$a6</td>
+<td class="db-table" width="50px">$a7</td>
+<td class="db-table" width="600px">$a8</td>
+<td class="db-table" width="50px">$a9</td>
+<td class="db-table" width="50px">$a10</td>
 <td class="db-table" width="50px">
-	<form action="deleteaddress.php" method="POST">
-	<input type="hidden" name="addressid" value="$a7">
+	<form action="edit.php" method="POST">
+	<input type="hidden" name="bookid" value="$a11">
+    <input type="submit" value="Edytuj">
+	</form>
+	<form action="delete.php" method="POST">
+	<input type="hidden" name="bookid" value="$a11">
     <input type="submit" value="Usuń">
 	</form>
 </td>
+</td>
 </tr><tr>
 END;
+					}
+				}
 			}
 		?>
-		
 		</tr>
-	</table>
-	
-	<input type="button" value="Dodaj adres" onclick=window.location.href="addaddress.php" />
+	</table>	
 	
 </body>
 

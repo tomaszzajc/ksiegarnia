@@ -51,8 +51,8 @@
 	<input type="button" value="Twoje konto" onclick="window.location.href='myaccount.php'" />
 	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 	<br /><br />
-
-    <table class="db-table">
+	
+<table class="db-table">
         <tr>
         <?php
 		
@@ -63,24 +63,22 @@
 			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
             mysqli_select_db($connection, $db_name);
             
-			//$result = mysqli_query($connection,"SELECT * FROM sessioncart WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
-			
 			$userid = $_SESSION['userid'];
-			$result = mysqli_query($connection,"SELECT * FROM sessioncart JOIN books ON books.bookid = sessioncart.bookid WHERE sessioncart.userid='$userid'") or die('Nie można wyświetlić tabeli');
-			
+			$result = mysqli_query($connection,"SELECT * FROM addresses WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
 			$quantity = mysqli_num_rows($result);
-            echo "Ksiązki w koszyku: ".$quantity;
+            echo "Adresy: ".$quantity;
 			
 			if ($quantity>=1)
 			{
 echo<<<END
-<th class="db-table">Seria</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Ilość</th>
-<th class="db-table">Cena</th>
-
+<th class="db-table">Odbiorca</th>
+<th class="db-table">Ulica</th>
+<th class="db-table">Nr domu</th>
+<th class="db-table">Nr mieszkania</th>
+<th class="db-table">Kod pocztowy</th>
+<th class="db-table">Miasto</th>
+<th class="db-table">Kraj</th>
+<th class="db-table">Usuń adres</th>
 </tr><tr>
 END;
 			}
@@ -88,25 +86,26 @@ END;
 			for ($i = 1; $i <= $quantity; $i++) 
 			{		
 			$row = mysqli_fetch_assoc($result);
-			$a1 = "$row[seriestitle]";
-			$a2 = "$row[volumetitle]";
-			$a3 = "$row[volumeno]";
-			$a4 = "$row[author]";
-			$a5 = "$row[quantity]";
-			$a6 = "$row[price]";
-			$a7 = "$row[bookid]";
-			$a8 = "$row[id]";
+			$a0 = "$row[addresstype]";
+			$a1 = "$row[street]";
+			$a2 = "$row[number]";
+			$a3 = "$row[aptno]";
+			$a4 = "$row[zipcode]";
+			$a5 = "$row[city]";
+			$a6 = "$row[country]";
+			$a7 = "$row[addressid]";
 
 echo<<<END
+<td class="db-table" width="100px">$a0</td>
 <td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="100px">$a2</td>
+<td class="db-table" width="50px">$a2</td>
 <td class="db-table" width="50px">$a3</td>
-<td class="db-table" width="100px">$a4</td>
-<td class="db-table" width="50px">$a5</td>
-<td class="db-table" width="50px">$a6</td>
+<td class="db-table" width="50px">$a4</td>
+<td class="db-table" width="200px">$a5</td>
+<td class="db-table" width="200px">$a6</td>
 <td class="db-table" width="50px">
-	<form action="deletecart.php" method="POST">
-	<input type="hidden" name="id" value="$a8">
+	<form action="deleteaddress.php" method="POST">
+	<input type="hidden" name="addressid" value="$a7">
     <input type="submit" value="Usuń">
 	</form>
 </td>
@@ -114,10 +113,12 @@ echo<<<END
 END;
 			}
 		?>
-	
+		
 		</tr>
 	</table>
-
+	
+	<input type="button" value="Dodaj adres" onclick=window.location.href="addaddress.php" />
+	
 </body>
 
 </html>
