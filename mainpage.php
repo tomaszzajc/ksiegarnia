@@ -57,24 +57,24 @@
 		}
 	?>
 	</p>
-    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Ksiązki</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>O nas</a> 
+    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Ksiązki</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw w3-margin-right"></i>O nas</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Kontakt</a>
-	<a href="myaccount.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw w3-margin-right"></i>Twoje konto</a>
-	<a href="cart.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw w3-margin-right"></i>Twój koszyk</a>
+	<a href="myaccount.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Twoje konto</a>
+	<a href="cart.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw w3-margin-right"></i>Twój koszyk</a>
 	<a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw w3-margin-right"></i>Wyloguj</a>
 	
-</div>
-  <div class="w3-panel w3-large">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
   </div>
-</nav>
+    <div class="w3-panel w3-large">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+    </div>
+  </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<div class="w3-main" style="margin-left:300px">
+  <div class="w3-main" style="margin-left:300px">
 
   <!-- Header -->
   <header id="portfolio">
@@ -96,7 +96,7 @@
 <?php include 'show.php';?>
 
 
-<div class="w3-container w3-padding-large" style="margin-bottom:32px">
+<div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
     <h4><b>O nas</b></h4>
     <p>	Ksiegarnia jest jednym z największych sprzedawców książek w Polsce. Każdego dnia zespół 300 osób pracuje nad tym, aby każde z ponad 200 tysięcy zamówień składanych miesięcznie zostało zrealizowane z najwyższą jakością.
 		Ekspresową wysyłkę i szeroką ofertę gwarantuje nam nasz magazyn o powierzchni prawie 4100 m², znajdujący się w jednym z najnowocześniejszych parków logistycznych w Europie – Goodman Kraków Airport Logistics Centre. Może on pomieścić aż 1 000 000 egzemplarzy książek. Przechowujemy w nim 80 000 tytułów, które jesteśmy w stanie wysłać nawet w ciągu 15 minut od złożenia zamówienia. Klienci z Krakowa, Warszawy, Wrocławia, Poznania, Łodzi, Katowic i Rzeszowa mogą odbierać swoje zamówienia w 20 naszych punktach odbioru bez dodatkowych kosztów dostawy!
@@ -106,7 +106,7 @@
   
   <!-- Contact Section -->
   <div class="w3-container w3-padding-large w3-grey">
-    <h4 id="contact"><b>Contact Me</b></h4>
+    <h4 id="contact"><b>Kontakt</b></h4>
     <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
       <div class="w3-third w3-dark-grey">
         <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
@@ -114,7 +114,7 @@
       </div>
       <div class="w3-third w3-teal">
         <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
-        <p>Chicago, US</p>
+        <p>Wrocław PL</p>
       </div>
       <div class="w3-third w3-dark-grey">
         <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
@@ -124,7 +124,7 @@
     <hr class="w3-opacity">
     <form action="/action_page.php" target="_blank">
       <div class="w3-section">
-        <label>Name</label>
+        <label>Nazwa</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
       </div>
       <div class="w3-section">
@@ -132,10 +132,10 @@
         <input class="w3-input w3-border" type="text" name="Email" required>
       </div>
       <div class="w3-section">
-        <label>Message</label>
+        <label>Wiadomość</label>
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
-      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Wyślij wiadomość</button>
     </form>
   </div>
 
@@ -167,13 +167,13 @@
     </div>
 
     <div class="w3-third">
-      <h3>POPULAR TAGS</h3>
+      <h3>Tagi</h3>
       <p>
-        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">London</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">DIY</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Shopping</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Games</span>
+        <span class="w3-tag w3-black w3-margin-bottom">Książka</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">London</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Komiks</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">DIY</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Powieść</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Tekst</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Shopping</span>
+        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Księgarnia</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Games</span>
       </p>
     </div>
 
