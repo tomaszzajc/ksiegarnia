@@ -7,11 +7,11 @@
 
 table.db-table
 {
-	width: 1500px;
+	width: 1000px;
 	margin: center;
 	border: 1px;
-	color: black;
-	padding: 0px;
+	color: white;
+	padding: 3px;
 }
 
 table.db-table th
@@ -24,6 +24,7 @@ table.db-table th
 table.db-table td
 {
 	background-color: white;
+	color: black;
 	padding: 1px;
 	border: 1px solid #ccc;
 }

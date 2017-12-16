@@ -98,7 +98,7 @@
   </header>
 
 
-  <?php include 'edit_show.php';?>
+  <?php include 'cart.php';?>
 
 
 <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">

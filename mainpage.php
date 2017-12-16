@@ -57,11 +57,11 @@
 		}
 	?>
 	</p>
-    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Ksiązki</a> 
+    <a href="mainpage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Ksiązki</a> 
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw w3-margin-right"></i>O nas</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Kontakt</a>
 	<a href="myaccount.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Twoje konto</a>
-	<a href="cart.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw w3-margin-right"></i>Twój koszyk</a>
+	<a href="cart_show.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw w3-margin-right"></i>Twój koszyk</a>
 	<a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock fa-fw w3-margin-right"></i>Wyloguj</a>
 	
   </div>
@@ -77,7 +77,7 @@
   <div class="w3-main" style="margin-left:300px">
 
   <!-- Header -->
-  <header id="portfolio">
+  <header id="book">
     <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
@@ -85,12 +85,12 @@
     <div class="w3-section w3-bottombar w3-padding-16" >
       <span class="w3-margin-right">Filter:</span> 
       <form action="mainpage.php" method="POST"  style="display: inline;">
-        <input type="text"  class="w3-input w3-border" style="width:200px;display: inline;" name="search" placeholder="Szukaj książek..." />
+        <input type="text"  class="w3-input w3-border" style="width:200px;display: inline;" name="search" placeholder="Szukaj książek..." required/>
         <button type="submit" class="w3-button w3-white" style="display: inline;">
 												<i class="fa fa-search w3-margin-right"></i>  Szukaj
 				</button>
       </form>
-      <button class="w3-button w3-white" style="display: inline;" onclick="window.location.href='show.php'"><i class="fa fa-th-list w3-margin-right"></i>Wszystkie</button>
+      <button class="w3-button w3-white" style="display: inline;" onclick="window.location.href='show.php'"><i class="fa fa-th-large w3-margin-right"></i>Wszystkie</button>
      <!-- <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button> -->
     </div>

@@ -37,4 +37,5 @@
 	}
 	
 	mysqli_close($connection);
+	header("Location:cart_show.php");
 ?>

@@ -75,72 +75,10 @@
 
 	mysqli_close($connection);
 
+	header("Location:cart_show.php");
 ?>
-    <table class="db-table">
-        <tr>
-        <?php
-		
-            ini_set("display_errors", 0);
-            require_once "connect.php";
-            $connection = mysqli_connect($host, $db_user, $db_password);
-			mysqli_query($connection, "SET CHARSET utf8");
-			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-            mysqli_select_db($connection, $db_name);
-            
-			//$result = mysqli_query($connection,"SELECT * FROM sessioncart WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
-			
-			$userid = $_SESSION['userid'];
-			$result = mysqli_query($connection,"SELECT * FROM sessioncart JOIN books ON books.bookid = sessioncart.bookid WHERE sessioncart.userid='$userid'") or die('Nie można wyświetlić tabeli');
-			
-			$quantity = mysqli_num_rows($result);
-            echo "Ksiązki w koszyku: ".$quantity;
-			
-			if ($quantity>=1)
-			{
-echo<<<END
-<th class="db-table">Seria</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Ilość</th>
-<th class="db-table">Cena</th>
-
-</tr><tr>
-END;
-			}
-
-			for ($i = 1; $i <= $quantity; $i++) 
-			{		
-			$row = mysqli_fetch_assoc($result);
-			$a1 = "$row[seriestitle]";
-			$a2 = "$row[volumetitle]";
-			$a3 = "$row[volumeno]";
-			$a4 = "$row[author]";
-			$a5 = "$row[quantity]";
-			$a6 = "$row[price]";
-			$a7 = "$row[bookid]";
-			$a8 = "$row[id]";
-
-echo<<<END
-<td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="100px">$a2</td>
-<td class="db-table" width="50px">$a3</td>
-<td class="db-table" width="100px">$a4</td>
-<td class="db-table" width="50px">$a5</td>
-<td class="db-table" width="50px">$a6</td>
-<td class="db-table" width="50px">
-	<form action="deletecart.php" method="POST">
-	<input type="hidden" name="id" value="$a8">
-    <input type="submit" value="Usuń">
-	</form>
-</td>
-</tr><tr>
-END;
-			}
-		?>
 	
-		</tr>
-	</table>
+
  
 </body>
 
