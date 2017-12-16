@@ -28,7 +28,8 @@
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
 	echo '<input type="button" value="Dodaj" onclick=window.location.href="add.php" />
-	<input type="button" value="Popraw/Usuń" onclick=window.location.href="update.php" />';
+	<input type="button" value="Popraw/Usuń" onclick=window.location.href="update.php" />
+	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" />';
 	}
 ?>
 	<br /><br />

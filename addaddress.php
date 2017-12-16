@@ -41,15 +41,16 @@
 	<br /><br />
 	<input type="button" value="Wyświetl wszystkie książki" onclick="window.location.href='show.php'" />
 	<input type="button" value="Szukaj książkę" onclick="window.location.href='search.php'" />
+	<input type="button" value="Twoje konto" onclick="window.location.href='myaccount.php'" />
+	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" /><br />
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
 	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
-	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" /><br />';
+	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
+	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
 	}
 ?>
-	<input type="button" value="Twoje konto" onclick="window.location.href='myaccount.php'" />
-	<input type="button" value="Koszyk" onclick="window.location.href='cart.php'" />
 
 	<br><h2>Dodaj adres</h2>
 	
@@ -89,7 +90,7 @@
 		}
 		else
 		{
-			echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
+			//echo "Wystąpił błąd, powtórz operację lub sprawdź ścieżkę do pliku";
 		}
 			
 		if (mysqli_query($connection, $insert))
@@ -98,8 +99,8 @@
 		}
 		else
 		{
-			echo "Nie udało się utworzyć nowego rekordu! Proszę wypełnić wszystkie pola!";
-			echo "Error: " . $insert . "<br>" . mysqli_error($connection);
+			//echo "Nie udało się utworzyć nowego rekordu! Proszę wypełnić wszystkie pola!";
+			//echo "Error: " . $insert . "<br>" . mysqli_error($connection);
 		}
 			
 		mysqli_close($connection);
