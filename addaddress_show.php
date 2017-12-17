@@ -32,13 +32,13 @@
 	<br><h2>Dodaj adres</h2>
 	
 	<form action="addaddress.php" method="POST" enctype="multipart/form-data">
-		Odbiorca: <input type="text" name="addresstype"><br /><br />
-		Ulica: <input type="text" name="street"> 
-		Nr domu: <input type="text" name="number"> 
-		Nr mieszkania: <input type="text" name="aptno"><br /><br />
-		Kod pocztowy: <input type="text" name="zipcode">
-		Miasto: <input type="text" name="city"><br /><br />
-		Kraj: <input type="text" name="country"><br /><br />
+		Odbiorca: <input type="text" name="addresstype" required><br /><br />
+		Ulica: <input type="text" name="street" required> 
+		Nr domu: <input type="text" name="number" required> 
+		Nr mieszkania: <input type="text" name="aptno" required><br /><br />
+		Kod pocztowy: <input type="text" name="zipcode" required>
+		Miasto: <input type="text" name="city" required><br /><br />
+		Kraj: <input type="text" name="country" required><br /><br />
 		 <input type="submit" name="add" value="Dodaj adres">
 	 </form>
  

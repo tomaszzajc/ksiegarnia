@@ -59,16 +59,16 @@
 ?>
 
 	<form action="edit.php" method="POST" enctype="multipart/form-data">
-		Seria: <input type="text" name="seriestitle" value="<?php echo $a1; ?>"> 
-		Cykl: <input type="text" name="subseriestitle" value="<?php echo $a2; ?>">
-		Tytuł tomu: <input type="text" name="volumetitle" value="<?php echo $a3; ?>">
-		Numer tomu: <input type="text" name="volumeno" value="<?php echo $a4; ?>"><br /><br />
-		Autor: <input type="text" name="author" value="<?php echo $a5; ?>"><br /><br />
-		Wydawca: <input type="text" name="publisher" value="<?php echo $a6; ?>">
-		Rok wydania: <input type="text" name="year" value="<?php echo $a7; ?>"><br /><br />
-		Opis: <textarea rows="10" cols="100" name="description"><?php echo $a8; ?></textarea><br /><br />
-		ISBN: <input type="text" name="isbn" value="<?php echo $a9; ?>"><br /><br />
-		Cena: <input type="text" name="price" value="<?php echo $a10; ?>"><br /><br />
+		Seria: <input type="text" name="seriestitle" value="<?php echo $a1; ?>" required> 
+		Cykl: <input type="text" name="subseriestitle" value="<?php echo $a2; ?>" required>
+		Tytuł tomu: <input type="text" name="volumetitle" value="<?php echo $a3; ?>" required>
+		Numer tomu: <input type="text" name="volumeno" value="<?php echo $a4; ?>" required><br /><br />
+		Autor: <input type="text" name="author" value="<?php echo $a5; ?>" required><br /><br />
+		Wydawca: <input type="text" name="publisher" value="<?php echo $a6; ?>" required>
+		Rok wydania: <input type="text" name="year" value="<?php echo $a7; ?>" required><br /><br />
+		Opis: <textarea rows="10" cols="100" name="description" required><?php echo $a8; ?></textarea><br /><br />
+		ISBN: <input type="text" name="isbn" value="<?php echo $a9; ?>" required><br /><br />
+		Cena: <input type="text" name="price" value="<?php echo $a10; ?>" required><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		<input type="hidden" name="bookid" value="<?php echo $a11; ?>">
 		<input type="submit" name="edit" value="Popraw książkę">

@@ -32,16 +32,16 @@
 	<br><h2>Dodaj książkę</h2>
 	
 	<form action="add.php" method="POST" enctype="multipart/form-data">
-		Seria: <input type="text" name="seriestitle"> 
-		Cykl: <input type="text" name="subseriestitle"> 
-		Tytuł tomu: <input type="text" name="volumetitle"> 
-		Numer tomu: <input type="text" name="volumeno"><br /><br />
-		Autor: <input type="text" name="author"><br /><br />
-		Wydawca: <input type="text" name="publisher"> 
-		Rok wydania: <input type="text" name="year"><br /><br />
-		Opis: <textarea rows="10" cols="100" name="description"></textarea><br /><br />
-		ISBN: <input type="text" name="isbn"><br /><br />
-		Cena: <input type="text" name="price"><br /><br />
+		Seria: <input type="text" name="seriestitle" required> 
+		Cykl: <input type="text" name="subseriestitle" required> 
+		Tytuł tomu: <input type="text" name="volumetitle" required> 
+		Numer tomu: <input type="text" name="volumeno" required><br /><br />
+		Autor: <input type="text" name="author" required><br /><br />
+		Wydawca: <input type="text" name="publisher" required> 
+		Rok wydania: <input type="text" name="year" required><br /><br />
+		Opis: <textarea rows="10" cols="100" name="description"  required></textarea><br /><br />
+		ISBN: <input type="text" name="isbn" required><br /><br />
+		Cena: <input type="text" name="price" required><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		 <input type="submit" name="add" value="Dodaj książkę">
 	 </form>
