@@ -42,6 +42,7 @@
 		Opis: <textarea rows="10" cols="100" name="description"  required></textarea><br /><br />
 		ISBN: <input type="text" name="isbn" required><br /><br />
 		Cena: <input type="text" name="price" required><br /><br />
+		Ilość: <input type="text" name="quantity" required><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		 <input type="submit" name="add" value="Dodaj książkę">
 	 </form>
@@ -69,6 +70,7 @@
 			$description=$_POST["description"];
 			$isbn=$_POST["isbn"];
 			$price=$_POST["price"];
+			$quantity=$_POST["quantity"];
 			
 			$path=$path.$_FILES['imageurl']['name'];
 			if(move_uploaded_file($_FILES['imageurl']['tmp_name'],$path))
@@ -82,8 +84,8 @@
 			
 				
 				
-				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, price, imageurl)
-				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', '$isbn', $price, '$img')";	
+				$insert="INSERT INTO books (seriestitle, subseriestitle, volumetitle, volumeno, author, publisher, year, description, isbn, price, imageurl, quantity)
+				VALUES ('$seriestitle', '$subseriestitle', '$volumetitle', $volumeno, '$author', '$publisher', $year, '$description', '$isbn', $price, '$img', '$quantity')";	
 			
 			
 			

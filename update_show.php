@@ -78,9 +78,9 @@ echo<<<END
 <th class="db-table">Autor</th>
 <th class="db-table">Wydawca</th>
 <th class="db-table">Rok wydania</th>
-<th class="db-table">Opis</th>
 <th class="db-table">ISBN</th>
 <th class="db-table">Cena</th>
+<th class="db-table">Ilość</th>
 <th class="db-table">Edycja rekordu</th>
 </tr><tr>
 END;
@@ -101,6 +101,7 @@ END;
 					$a9 = "$row[isbn]";
 					$a10 = "$row[price]";
 					$a11 = "$row[bookid]";
+					$a12 = "$row[quantity]";
 
 echo<<<END
 <td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
@@ -111,10 +112,10 @@ echo<<<END
 <td class="db-table" width="200px">$a5</td>
 <td class="db-table" width="200px">$a6</td>
 <td class="db-table" width="50px">$a7</td>
-<td class="db-table" width="600px">$a8</td>
 <td class="db-table" width="50px">$a9</td>
 <td class="db-table" width="50px">$a10</td>
-<td class="db-table" width="50px">
+<td class="db-table" width="50px">$a12</td>
+<td rowspan="2" class="db-table" width="50px">
 	<form action="edit.php" method="POST">
 	<input type="hidden" name="bookid" value="$a11">
     <input type="submit" value="Edytuj">
@@ -125,7 +126,11 @@ echo<<<END
 	</form>
 </td>
 </td>
-</tr><tr>
+</tr>
+<!-- <tr><th colspan="11" class="db-table">Opis</th></tr> -->
+<tr><td colspan="11" class="db-table" width="600px">$a8</td></tr>
+<tr><th colspan="12" class="db-table"></th></tr>
+<tr>
 END;
 					}
 				}
