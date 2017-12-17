@@ -56,6 +56,7 @@
 	$a9 = "$row[isbn]";
 	$a10 = "$row[price]";
 	$a11 = "$row[bookid]";
+	$a12 = "$row[quantity]";
 ?>
 
 	<form action="edit.php" method="POST" enctype="multipart/form-data">
@@ -69,6 +70,7 @@
 		Opis: <textarea rows="10" cols="100" name="description" required><?php echo $a8; ?></textarea><br /><br />
 		ISBN: <input type="text" name="isbn" value="<?php echo $a9; ?>" required><br /><br />
 		Cena: <input type="text" name="price" value="<?php echo $a10; ?>" required><br /><br />
+		Ilość: <input type="text" name="quantity" value="<?php echo $a12; ?>" required><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		<input type="hidden" name="bookid" value="<?php echo $a11; ?>">
 		<input type="submit" name="edit" value="Popraw książkę">
@@ -99,6 +101,7 @@
 			$price=$_POST["price"];
 			$bookid=$_POST["bookid"];
 			$img=$_POST["imageurl"];
+			$quantity=$_POST["quantity"];
 			
 			$path=$path.$_FILES['imageurl']['name'];
 				
@@ -127,7 +130,8 @@
 			description='$description',
 			isbn='$isbn',
 			price=$price,
-			imageurl='$img' 
+			imageurl='$img',
+			quantity='$quantity'
 			WHERE bookid=$bookid";
 			
 			if (mysqli_query($connection, $update))
@@ -169,6 +173,7 @@
 	$a9 = "$row[isbn]";
 	$a10 = "$row[price]";
 	$a11 = "$row[bookid]";
+	$a12 = "$row[quantity]";
 
 		}
 	 ?>
