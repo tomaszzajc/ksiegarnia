@@ -17,10 +17,11 @@
 	else
 	{
 		$userid = $_SESSION['userid'];
-		$bookid = $_POST['bookid'];
-		//$quantity=$_POST["quantity"];
+		//$bookid = $_POST['bookid'];
+		$bookid = 1;
+		$quantity = 1;
 		
-		$insert="INSERT INTO sessioncart (id, userid, bookid, quantity) VALUES ('NULL', '$userid', '$bookid', '1')";
+		$insert="INSERT INTO sessioncart (id, userid, bookid, quantity) VALUES ('NULL', '$userid', '$bookid', '$quantity') ON DUPLICATE KEY UPDATE quantity=quantity+$quantity";
 		
 		if (mysqli_query($connection, $insert))
 		{

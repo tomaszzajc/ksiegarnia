@@ -67,7 +67,7 @@ END;
 			$a2 = "$row[volumetitle]";
 			$a3 = "$row[volumeno]";
 			$a4 = "$row[author]";
-			$a5 = "$row[quantity]";
+			$a5 = "$row[orderquantity]";
 			$a6 = "$row[price]";
 			$a7 = "$row[bookid]";
 			$a8 = "$row[id]";
@@ -94,6 +94,15 @@ END;
 	
 		</tr>
 	</table>
+
+<?php
+	echo '<form action="deletecart.php" method="POST">
+		<input type="hidden" name="id" value="$a8">
+    	<button type="submit" class="w3-button w3-white">
+			<i class="fa fa-minus-square w3-margin-right"></i>Usuń
+		</button>
+	</form>'
+?>
 
 </body>
 
