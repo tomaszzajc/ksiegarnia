@@ -96,10 +96,10 @@ END;
 	</table>
 
 <?php
-	echo '<form action="deletecart.php" method="POST">
+	echo '<form action="orderconfirmation.php" method="POST">
 		<input type="hidden" name="id" value="$a8">
     	<button type="submit" class="w3-button w3-white">
-			<i class="fa fa-minus-square w3-margin-right"></i>Usuń
+			<i class="fa fa-minus-square w3-margin-right"></i>Zamów i zapłać
 		</button>
 	</form>'
 ?>
