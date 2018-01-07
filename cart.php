@@ -97,7 +97,7 @@ END;
 
 <?php
 	echo '<form action="orderconfirmation.php" method="POST">
-		<input type="hidden" name="id" value="$a8">
+		<input type="hidden" name="orderid" value="$a8">
     	<button type="submit" class="w3-button w3-white">
 			<i class="fa fa-minus-square w3-margin-right"></i>Zamów i zapłać
 		</button>
