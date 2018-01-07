@@ -95,14 +95,76 @@ END;
 		</tr>
 	</table>
 
-<?php
-	echo '<form action="orderconfirmation.php" method="POST">
+		<table class="db-table">
+        <tr>
+        <?php
+		
+            ini_set("display_errors", 0);
+            require_once "connect.php";
+            $connection = mysqli_connect($host, $db_user, $db_password);
+			mysqli_query($connection, "SET CHARSET utf8");
+			mysqli_query($connection, "SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
+            mysqli_select_db($connection, $db_name);
+            
+			$userid = $_SESSION['userid'];
+			$result = mysqli_query($connection,"SELECT * FROM addresses WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
+			$quantity = mysqli_num_rows($result);
+            echo "<br /><br /><br />Wybierz adres dostawy: ";
+			
+			if ($quantity>=1)
+			{
+echo<<<END
+<th class="db-table">Odbiorca</th>
+<th class="db-table">Ulica</th>
+<th class="db-table">Nr domu</th>
+<th class="db-table">Nr mieszkania</th>
+<th class="db-table">Kod pocztowy</th>
+<th class="db-table">Miasto</th>
+<th class="db-table">Kraj</th>
+</tr><tr>
+END;
+			}
+
+			for ($i = 1; $i <= $quantity; $i++) 
+			{		
+			$row = mysqli_fetch_assoc($result);
+			$a0 = "$row[addresstype]";
+			$a1 = "$row[street]";
+			$a2 = "$row[number]";
+			$a3 = "$row[aptno]";
+			$a4 = "$row[zipcode]";
+			$a5 = "$row[city]";
+			$a6 = "$row[country]";
+			$a7 = "$row[addressid]";
+
+echo<<<END
+<td class="db-table" width="100px">$a0</td>
+<td class="db-table" width="100px">$a1</td>
+<td class="db-table" width="50px">$a2</td>
+<td class="db-table" width="50px">$a3</td>
+<td class="db-table" width="50px">$a4</td>
+<td class="db-table" width="200px">$a5</td>
+<td class="db-table" width="200px">$a6</td>
+<td class="db-table" width="50px">
+	<form action="orderconfirmation.php" method="POST">
+    <input type="radio" name="addressid" value="$a7"
+	<?php if (isset($a7) && $a7=="$addressid") echo "checked";?>
+	</form>
+</td>
+</tr><tr>
+END;
+			}
+		?>
+		
+		</tr>
+	</table>
+	
+	<form action="orderconfirmation.php" method="POST">
 		<input type="hidden" name="orderid" value="$a8">
     	<button type="submit" class="w3-button w3-white">
-			<i class="fa fa-minus-square w3-margin-right"></i>Zamów i zapłać
+			<i class="fa fa-minus-square w3-margin-right"></i>Złóż zamówienie
 		</button>
-	</form>'
-?>
+	</form>
 
 </body>
 
