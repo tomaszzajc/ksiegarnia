@@ -14,6 +14,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatibile" content="IE=edge,chrome=1" />
 	<link rel="stylesheet" href="style.css" type="text/css">
+	
 	<title>Projekt WWSIS</title>
 </head>
 
@@ -23,25 +24,30 @@
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
-	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
+	echo '<div class="w3-container" >
+	<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
 	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
-	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
+	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />
+	</div>';
 	}
 ?>
 
-	<br><h2>Dodaj adres</h2>
-	
-	<form action="addaddress.php" method="POST" enctype="multipart/form-data">
-		Odbiorca: <input type="text" name="addresstype" required><br /><br />
-		Ulica: <input type="text" name="street" required> 
-		Nr domu: <input type="text" name="number" required> 
-		Nr mieszkania: <input type="text" name="aptno" required><br /><br />
-		Kod pocztowy: <input type="text" name="zipcode" required>
-		Miasto: <input type="text" name="city" required><br /><br />
-		Kraj: <input type="text" name="country" required><br /><br />
-		 <input type="submit" name="add" value="Dodaj adres">
-	 </form>
- 
+
+<div class="w3-container" >
+<h4><b>Dodaj adres</b></h4>
+  <form class="form-horizontal"  action="addaddress.php" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+		<input type="text" name="addresstype" placeholder="Odbiorca"  style="width:300px; margin:5px 0px" required ><br />
+		<input type="text" name="street" placeholder="Ulica" style="width:300px; margin:5px 0px" required><br /> 
+		<input type="text" name="number" placeholder="Nr domu" style="width:300px; margin:5px 0px" required> <br />
+		<input type="text" name="aptno" placeholder="Nr mieszkania" style="width:300px; margin:5px 0px" required><br />
+		<input type="text" name="zipcode" placeholder="Kod pocztowy" style="width:300px; margin:5px 0px" required><br />
+		<input type="text" name="city" placeholder="Miasto" style="width:300px; margin:5px 0px" required><br />
+		<input type="text" name="country" placeholder="Kraj" style="width:300px; margin:5px 0px" required><br />
+		<input type="submit" name="add" style="width:300px; margin:5px 0px" value="Dodaj adres">
+	</div>
+  </form>
+</div>
 	 <?php
 		ini_set("display_errors", 0);
 		require_once "connect.php";

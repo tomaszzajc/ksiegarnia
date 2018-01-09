@@ -29,12 +29,12 @@
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-animate-left" background-image: url("http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg") style="z-index:3;width:300px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-animate-left" background-image: url("http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg") style="z-index:3;width:300px;" id="mySidebar"><br> <!--background-image: url("http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg") style="z-index:3;width:300px;"-->
   <div class="w3-container">
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="" style="width:45%;" class="w3-round"><br><br>
+ <img src="http://4.bp.blogspot.com/-bldk4nqnE6k/VGaQe8RDdrI/AAAAAAAAzVM/gam6lF4fol4/s1600/20141114100727.jpg" style="width:95%;" class="w3-round"><br><br>
     <h4><b>Menu</b></h4>
     <p class="w3-text-grey"></p>
   </div>
@@ -78,7 +78,7 @@
 
   <!-- Header -->
   <header id="book">
-    <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <a href="#"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
     <h1><b>Księgarnia</b></h1>

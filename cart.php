@@ -96,7 +96,7 @@ END;
 	</table>
 
 		<table class="db-table">
-        <tr>
+		<tr>
         <?php
 		
             ini_set("display_errors", 0);
@@ -109,7 +109,8 @@ END;
 			$userid = $_SESSION['userid'];
 			$result = mysqli_query($connection,"SELECT * FROM addresses WHERE userid='$userid'") or die('Nie można wyświetlić tabeli');
 			$quantity = mysqli_num_rows($result);
-            echo "<br /><br /><br />Wybierz adres dostawy: ";
+            echo "<br /><br />";
+			echo "    Wybierz adres dostawy: ";
 			
 			if ($quantity>=1)
 			{
@@ -140,14 +141,16 @@ END;
 echo<<<END
 <td class="db-table" width="100px">$a0</td>
 <td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="50px">$a2</td>
-<td class="db-table" width="50px">$a3</td>
-<td class="db-table" width="50px">$a4</td>
+<td class="db-table" width="50px" align="center">$a2</td>
+<td class="db-table" width="50px" align="center">$a3</td>
+<td class="db-table" width="50px" align="center">$a4</td>
 <td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="200px">$a6</td>
-<td class="db-table" width="50px">
+<td class="db-table" width="150px">$a6</td>
+<td class="db-table" width="20px" align="center">
 	<form action="orderconfirmation.php" method="POST">
-    <input type="radio" name="addressid" value="$a7"
+	<div class="checkbox">
+    <input type="checkbox" class="form-control input-lg" name="addressid" value="$a7"
+	</div>
 	<?php if (isset($a7) && $a7=="$addressid") echo "checked";?>
 	</form>
 </td>
