@@ -97,9 +97,9 @@
     </div>
   </header>
 
-
+  <div class="w3-container" >
   <?php include 'show.php';?>
-
+    </div>
 
 <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
     <h4><b>O nas</b></h4>

@@ -59,35 +59,22 @@
 					isbn LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
 				
 				$quantity = mysqli_num_rows($query);
-				echo "znaleziono: ".$quantity;
+				echo "znaleziono: ".$quantity."<br><br>";
 				
 				if($quantity == 0)
 				{
 					echo "<br />Brak książek o podanej wartości!";
 				}
 				else
-				{
-					if ($quantity>=1)
-					{
-echo<<<END
-<th class="db-table">Okładka</th>
-<th class="db-table">Seria</th>
-<th class="db-table">Cykl</th>
-<th class="db-table">Tytuł</th>
-<th class="db-table">Tom</th>
-<th class="db-table">Autor</th>
-<th class="db-table">Wydawca</th>
-<th class="db-table">Rok wydania</th>
-<th class="db-table">ISBN</th>
-<th class="db-table">Cena</th>
-<th class="db-table">Ilość</th>
-<th class="db-table">Edycja rekordu</th>
-</tr><tr>
-END;
-					}
-
+				
+					$wiersz=0;
 					for ($i = 1; $i <= $quantity; $i++) 
-					{		
+					{	
+						
+						if($wiersz==4){
+							ECHO '<div class="w3-row-padding">';
+						}	
+
 					$row = mysqli_fetch_assoc($query);
 					$a0 = "$row[imageurl]";
 					$a1 = "$row[seriestitle]";
@@ -101,40 +88,50 @@ END;
 					$a9 = "$row[isbn]";
 					$a10 = "$row[price]";
 					$a11 = "$row[bookid]";
-					$a12 = "$row[quantity]";
+					$iloscZnakow=strlen($a8);
+					$skraca='100';
+					if ($iloscZnakow>$skraca) {
+						$ucina = $skraca-$iloscZnakow;
+						$a8 = substr($a8, 0, $ucina);
+						$a8 = $a8.'...';
+					}
+			
 
-echo<<<END
-<td class="db-table"><img src="images/$a0" alt="$a1, $a2, $a3" height="250" width="150"></td>
-<td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="100px">$a2</td>
-<td class="db-table" width="100px">$a3</td>
-<td class="db-table" width="50px">$a4</td>
-<td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="200px">$a6</td>
-<td class="db-table" width="50px">$a7</td>
-<td class="db-table" width="50px">$a9</td>
-<td class="db-table" width="50px">$a10</td>
-<td class="db-table" width="50px">$a12</td>
-<td rowspan="2" class="db-table" width="50px">
-	<form action="edit.php" method="POST">
-	<input type="hidden" name="bookid" value="$a11">
-    <input type="submit" value="Edytuj">
-	</form>
-	<form action="delete.php" method="POST">
-	<input type="hidden" name="bookid" value="$a11">
-    <input type="submit" value="Usuń">
-	</form>
-</td>
-</td>
-</tr>
-<!-- <tr><th colspan="11" class="db-table">Opis</th></tr> -->
-<tr><td colspan="11" class="db-table" width="600px">$a8</td></tr>
-<tr><th colspan="12" class="db-table"></th></tr>
-<tr>
-END;
+
+echo'<div class="w3-quarter w3-container w3-margin-bottom">'.
+'<img src="/ksiegarnia/images/'.$a0.
+'" alt="Brak okładki" style="width:100%" class="w3-hover-opacity">
+		<div class="w3-container w3-white">
+			<p><b>Seria: </b>'.$a1.'</p>
+			<p><b>Tytuł: </b>'.$a3.'</p>
+			<p><b>Wydawnictwo: </b>'.$a6.'</p>
+			<p><b>Autor </b>'.$a5.'</p>
+			<p><b>Cena: </b>'.$a10.'</p>
+			<p><b>Opis: </b><br>'.$a8.'<a href=""></a></p>
+			<form action="edit.php" method="POST" style="float: left">
+			<input type="hidden" name="bookid" value="'.$a11.'">
+			<input type="submit" value="Edytuj">
+			</form>
+			<form action="delete.php" method="POST" style="float: left">
+			<input type="hidden" name="bookid" value="'.$a11.'">
+			<input type="submit" value="Usuń">
+			</form>
+		</div>
+	</div>';
+
+if($wiersz==3)
+{
+	$wiersz = 0;
+	ECHO '</div>';
+}
+else
+{
+	$wiersz++; 
+}
+
 					}
 				}
-			}
+			
 		?>
 		</tr>
 	</table>	

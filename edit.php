@@ -97,7 +97,8 @@
     </div>
   </header>
 
-
+	<?php $bookid = $_POST['bookid'];?>
+  <?php $GLOBALS["bookid"] = $bookid;?>
   <?php include 'edit_show.php';?>
 
 

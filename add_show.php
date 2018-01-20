@@ -23,9 +23,9 @@
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
-	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
-	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
-	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
+		echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
+		<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
+		<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
 	}
 ?>
 
@@ -36,7 +36,7 @@
 		Cykl: <input type="text" name="subseriestitle" required> 
 		Tytuł tomu: <input type="text" name="volumetitle" required> 
 		Numer tomu: <input type="text" name="volumeno" required><br /><br />
-		Autor: <input type="text" name="author" required><br /><br />
+		Autor: <input type="text" name="author" required>
 		Wydawca: <input type="text" name="publisher" required> 
 		Rok wydania: <input type="text" name="year" required><br /><br />
 		Opis: <textarea rows="10" cols="100" name="description"  required></textarea><br /><br />

@@ -19,13 +19,13 @@
 
 <body>
 
-	
+<div class="w3-container" >	
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
-	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
-	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
-	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
+		echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
+		<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
+		<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
 	}
 ?>
 
@@ -33,7 +33,8 @@
 
 <?php
 	$bookid = $_POST['bookid'];
-	
+	$bookid = $GLOBALS["bookid"];
+
 	require_once "connect.php";
 			
 	$connection = mysqli_connect($host, $db_user, $db_password) or die("Błąd połączenia z bazą danych" . mysqli_error());
@@ -60,17 +61,17 @@
 ?>
 
 	<form action="edit.php" method="POST" enctype="multipart/form-data">
-		Seria: <input type="text" name="seriestitle" value="<?php echo $a1; ?>" required> 
-		Cykl: <input type="text" name="subseriestitle" value="<?php echo $a2; ?>" required>
-		Tytuł tomu: <input type="text" name="volumetitle" value="<?php echo $a3; ?>" required>
-		Numer tomu: <input type="text" name="volumeno" value="<?php echo $a4; ?>" required><br /><br />
-		Autor: <input type="text" name="author" value="<?php echo $a5; ?>" required><br /><br />
-		Wydawca: <input type="text" name="publisher" value="<?php echo $a6; ?>" required>
-		Rok wydania: <input type="text" name="year" value="<?php echo $a7; ?>" required><br /><br />
-		Opis: <textarea rows="10" cols="100" name="description" required><?php echo $a8; ?></textarea><br /><br />
-		ISBN: <input type="text" name="isbn" value="<?php echo $a9; ?>" required><br /><br />
-		Cena: <input type="text" name="price" value="<?php echo $a10; ?>" required><br /><br />
-		Ilość: <input type="text" name="quantity" value="<?php echo $a12; ?>" required><br /><br />
+		Seria: <input type="text" size="80" name="seriestitle" value="<?php echo $a1; ?>" required><br /><br /> 
+		Cykl: <input type="text" size="80" name="subseriestitle" value="<?php echo $a2; ?>" required><br /><br />
+		Tytuł tomu: <input type="text" size="80" name="volumetitle" value="<?php echo $a3; ?>" required><br /><br />
+		Numer tomu: <input type="text" size="80" name="volumeno" value="<?php echo $a4; ?>" required><br /><br />
+		Autor: <input type="text" size="80" name="author" value="<?php echo $a5; ?>" required><br /><br />
+		Wydawca: <input type="text" size="80" name="publisher" value="<?php echo $a6; ?>" required><br /><br />
+		Rok wydania: <input type="text" size="80" name="year" value="<?php echo $a7; ?>" required><br /><br />
+		Opis: <textarea rows="12" cols="80" name="description" required><?php echo $a8; ?></textarea><br /><br />
+		ISBN: <input type="text" size="80" name="isbn" value="<?php echo $a9; ?>" required><br /><br />
+		Cena: <input type="text" size="80" name="price" value="<?php echo $a10; ?>" required><br /><br />
+		Ilość: <input type="text" size="80" name="quantity" value="<?php echo $a12; ?>" required><br /><br />
 		Okładka: <input type="file" name="imageurl"><br /><br />
 		<input type="hidden" name="bookid" value="<?php echo $a11; ?>">
 		<input type="submit" name="edit" value="Popraw książkę">
@@ -177,7 +178,7 @@
 
 		}
 	 ?>
- 
+ </div>
 </body>
 
 </html>

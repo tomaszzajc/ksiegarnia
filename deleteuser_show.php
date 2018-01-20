@@ -22,9 +22,9 @@
 <?php
 	if(isset($_SESSION['loggedin']) && ($_SESSION['userpriv']=="admin"))
 	{
-	echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
-	<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
-	<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
+		echo '<input type="button" value="Dodaj książkę" onclick=window.location.href="add.php" />
+		<input type="button" value="Edytuj/Usuń książkę" onclick=window.location.href="update.php" />
+		<input type="button" value="Zarządzaj użytkownikami" onclick=window.location.href="updateuser.php" /><br /><br />';
 	}
 ?>
 
