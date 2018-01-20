@@ -18,10 +18,11 @@
 	{
 		$userid = $_SESSION['userid'];
 		$bookid = $_POST['bookid'];
-		//$bookid = 1;
-		$quantity = 1;
+		$orderquantity = 1;
+		$price = $_POST['price'];
+		$totalprice = orderquantity * price;
 		
-		$insert="INSERT INTO sessioncart (id, userid, bookid, orderquantity) VALUES ('NULL', '$userid', '$bookid', '$quantity') ON DUPLICATE KEY UPDATE orderquantity=orderquantity+$quantity";
+		$insert="INSERT INTO sessioncart (userid, bookid, orderquantity, price, totalprice) VALUES ('$userid', '$bookid', '$orderquantity', '$price', '$totalprice') ON DUPLICATE KEY UPDATE orderquantity=orderquantity+$quantity";
 		
 		if (mysqli_query($connection, $insert))
 		{
