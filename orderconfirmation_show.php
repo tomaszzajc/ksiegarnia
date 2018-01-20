@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	
 	if(!isset($_SESSION['loggedin']))																	//odeslanie do strony index.php jesli nie wykryto aktywnej sesji
 	{
@@ -29,8 +28,6 @@
 	}
 ?>
 
-Dziękujemy za zakup w naszej księgarni
-
 <?php
 
 	require_once "connect.php";																			//sprawdzenie czy istnieje plik z danymi do połączenia się z bazą danych
@@ -44,26 +41,24 @@ Dziękujemy za zakup w naszej księgarni
 	{
 		$userid = $_SESSION['userid'];
 		$bookid = $_POST['bookid'];
+		$quantity = $_POST['quantity'];
+		$price = $_POST['price'];
 		$addressid = $_POST['addressid'];
-		$orderquantity=1;
 		
-		$insert="INSERT INTO sessioncart (userid, bookid, orderquantity) VALUES ('$userid', '$bookid', '$orderquantity') ON DUPLICATE KEY UPDATE orderquantity=orderquantity+".$orderquantity.";
+		$insert="INSERT INTO orderhistory (userid, bookid, quantity, price, addressid) VALUES ('$userid', '$bookid', '$quantity', '$price', '$addressid')";
 		
 		if (mysqli_query($connection, $insert))
 		{
-			echo "<p>Dodano do koszyka!</p>";
-			header('Location: cart.php');
+			echo "<p>Dziękujemy za zakup w naszej księgarni!</p>";
+			//header('Location: cart.php');
 		}
 		else
 		{
-			echo "Nie udało się dodać do koszyka!<br />";
 			echo "Error: " . $insert . "<br>" . mysqli_error($connection);
 		}
 	
 		$connection->close();
 	}
-	
-	mysqli_close($connection);
 ?>
  
 </body>

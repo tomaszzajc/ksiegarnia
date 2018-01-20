@@ -129,14 +129,14 @@ END;
 			for ($i = 1; $i <= $quantity; $i++) 
 			{		
 			$row = mysqli_fetch_assoc($result);
-			$a0 = "$row[addresstype]";
-			$a1 = "$row[street]";
-			$a2 = "$row[number]";
-			$a3 = "$row[aptno]";
-			$a4 = "$row[zipcode]";
-			$a5 = "$row[city]";
-			$a6 = "$row[country]";
-			$a7 = "$row[addressid]";
+			$a10 = "$row[addresstype]";
+			$a11 = "$row[street]";
+			$a12 = "$row[number]";
+			$a13 = "$row[aptno]";
+			$a14 = "$row[zipcode]";
+			$a15 = "$row[city]";
+			$a16 = "$row[country]";
+			$a17 = "$row[addressid]";
 
 echo<<<END
 <td class="db-table" width="100px">$a0</td>
@@ -149,9 +149,9 @@ echo<<<END
 <td class="db-table" width="20px" align="center">
 	<form action="orderconfirmation.php" method="POST">
 	<div class="checkbox">
-    <input type="checkbox" class="form-control input-lg" name="addressid" value="$a7"
+    <input type="checkbox" class="form-control input-lg" name="addressid" value="$a17"
 	</div>
-	<?php if (isset($a7) && $a7=="$addressid") echo "checked";?>
+	<?php if (isset($a17) && $a17=="$addressid") echo "checked";?>
 	</form>
 </td>
 </tr><tr>
@@ -163,7 +163,10 @@ END;
 	</table>
 	
 	<form action="orderconfirmation.php" method="POST">
-		<input type="hidden" name="orderid" value="$a8">
+		<input type="hidden" name="bookid" value='.$a7.'>
+		<input type="hidden" name="quantity" value='.$a5.'>
+		<input type="hidden" name="price" value='.$a6.'>
+		<input type="hidden" name="addressid" value='.$a17.'>
     	<button type="submit" class="w3-button w3-white">
 			<i class="fa fa-minus-square w3-margin-right"></i>Złóż zamówienie
 		</button>
