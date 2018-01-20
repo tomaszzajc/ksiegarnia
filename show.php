@@ -109,10 +109,8 @@
 										<p><b>Autor </b>'.$a5.'</p>
 										<p><b>Cena: </b>'.$a10.'</p>
 										<p><form action="add_to_cart.php" method="POST">
-											<input type="hidden" name="bookid" value='.$a11.'>
-											<button type="submit" class="w3-button w3-grey">
-												<i class="fa fa-cart-plus w3-margin-right"></i>  Dodaj do koszyka
-											</button>
+										<input type="hidden" name="bookid" value='.$a11.'>
+										<input type="submit" value="Dodaj">
 										</form></p>
 										<p><b>Opis: </b><br>'.$a8.'<a href=""> więcej.</a></p>
 									</div>
