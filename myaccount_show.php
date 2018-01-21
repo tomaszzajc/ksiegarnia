@@ -135,6 +135,7 @@ END;
 			$a2 = "$row[volumetitle]";
 			$a3 = "$row[volumeno]";
 			$a4 = "$row[author]";
+			$a5 = "$row[quantity]";
 			$a6 = "$row[price]";
 			$a7 = "$row[bookid]";
 			$a8 = "$row[id]";
@@ -145,7 +146,6 @@ echo<<<END
 <td class="db-table" width="40px" align="center">$a3</td>
 <td class="db-table" width="250px">$a4</td>
 <td class="db-table" width="40px" align="center">$a5</td>
-<td class="db-table" width="40px" align="center">$a9</td>
 <td class="db-table" width="40px" align="center">$a6</td>
 <td class="db-table"  width="20px" align="center">
 	<form action="deletecart.php" method="POST">

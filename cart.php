@@ -57,7 +57,7 @@ echo<<<END
 </tr><tr>
 END;
 			}
-
+			$dSum == 0;
 			for ($i = 1; $i <= $quantity; $i++) 
 			{		
 			$row = mysqli_fetch_assoc($result);
@@ -69,6 +69,7 @@ END;
 			$a6 = "$row[price]";
 			$a7 = "$row[bookid]";
 			$a8 = "$row[id]";
+			$dSum = $dSum + "$row[price]";
 
 echo<<<END
 <td class="db-table" width="10px">$a1</td>
@@ -86,14 +87,17 @@ echo<<<END
 	</form>
 </td>
 </tr><tr>
+
 END;
 			}
 		?>
 	
 		</tr>
 	</table>
-
-		<table class="db-table">
+	
+	<?php echo "Wartość łączna zamówienia: " .$dSum. " PLN"; ?>
+	
+	<table class="db-table">
 		<tr>
         <?php
 		
@@ -137,13 +141,13 @@ END;
 			$a17 = "$row[addressid]";
 
 echo<<<END
-<td class="db-table" width="100px">$a0</td>
-<td class="db-table" width="100px">$a1</td>
-<td class="db-table" width="50px" align="center">$a2</td>
-<td class="db-table" width="50px" align="center">$a3</td>
-<td class="db-table" width="50px" align="center">$a4</td>
-<td class="db-table" width="200px">$a5</td>
-<td class="db-table" width="150px">$a6</td>
+<td class="db-table" width="100px">$a10</td>
+<td class="db-table" width="100px">$a11</td>
+<td class="db-table" width="50px" align="center">$a12</td>
+<td class="db-table" width="50px" align="center">$a13</td>
+<td class="db-table" width="50px" align="center">$a14</td>
+<td class="db-table" width="200px">$a15</td>
+<td class="db-table" width="150px">$a16</td>
 <td class="db-table" width="20px" align="center">
 	<form action="orderconfirmation.php" method="POST">
 	<div class="checkbox">
