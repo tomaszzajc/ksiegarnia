@@ -109,7 +109,13 @@ END;
             mysqli_select_db($connection, $db_name);
 			
 			$userid = $_SESSION['userid'];
-			$result = mysqli_query($connection,"SELECT * FROM orderhistory JOIN books ON books.bookid = orderhistory.bookid WHERE orderhistory.userid='$userid'") or die('Nie można wyświetlić tabeli');
+			$result = mysqli_query($connection,"SELECT 
+												seriestitle, volumetitle, volumeno, author, orderhistory.quantity, orderhistory.price
+												FROM `orderhistory` 
+												left join books ON books.bookid = orderhistory.bookid
+												left join addresses ON addresses.addressid = orderhistory.addressid
+												 WHERE orderhistory.userid='$userid'")
+					 or die('Nie można wyświetlić tabeli');
 			
 			$quantity = mysqli_num_rows($result);
             echo "    Ksiązki kupione: ".$quantity;
@@ -147,14 +153,7 @@ echo<<<END
 <td class="db-table" width="250px">$a4</td>
 <td class="db-table" width="40px" align="center">$a5</td>
 <td class="db-table" width="40px" align="center">$a6</td>
-<td class="db-table"  width="20px" align="center">
-	<form action="deletecart.php" method="POST">
-		<input type="hidden" name="id" value="$a8">
-    	<button type="submit" class="w3-button w3-white">
-			<i class="fa fa-minus-square w3-margin-right"></i>Usuń
-		</button>
-	</form>
-</td>
+
 </tr><tr>
 END;
 			}

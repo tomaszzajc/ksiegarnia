@@ -163,7 +163,8 @@ END;
 		
 		</tr>
 	</table>
-	
+<?php	
+echo<<<END
 	<form action="orderconfirmation.php" method="POST">
 		<input type="hidden" name="bookid" value='.$a7.'>
 		<input type="hidden" name="quantity" value='.$a5.'>
@@ -171,9 +172,15 @@ END;
 		<input type="hidden" name="addressid" value='.$a17.'>
     	<button type="submit" class="w3-button w3-white">
 			<i class="fa fa-minus-square w3-margin-right"></i>Złóż zamówienie
+			
+			
+			
+			
 		</button>
+		
 	</form>
-
+END;
+?>
 </body>
 
 </html>

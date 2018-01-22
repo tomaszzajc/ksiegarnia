@@ -50,13 +50,16 @@
 			}else{$searchq = '';}
 		
 			$result  = mysqli_query($connection, "SELECT * FROM books WHERE 
-					seriestitle LIKE '%$searchq%' OR
+					(seriestitle LIKE '%$searchq%' OR
 					subseriestitle LIKE '%$searchq%' OR
 					volumetitle LIKE '%$searchq%' OR
 					author LIKE '%$searchq%' OR
 					publisher LIKE '%$searchq%' OR
 					year LIKE '%$searchq%' OR
-					isbn LIKE '%$searchq%'") or die("Nie udało się wyszukać!");
+					isbn LIKE '%$searchq%')
+					AND quantity > 0
+					") or die("Nie udało się wyszukać!")
+					;
 				
 				$quantity = mysqli_num_rows($result );
 				if($searchq!=''){
@@ -91,6 +94,7 @@
 							$a9 = "$row[isbn]";
 							$a10 = "$row[price]";
 							$a11 = "$row[bookid]";
+							$a12 = "$row[quantity]";
 							$iloscZnakow=strlen($a8);
 							$skraca='252';
 							if ($iloscZnakow>$skraca) {
@@ -108,6 +112,7 @@
 										<p><b>Wydawnictwo: </b>'.$a6.'</p>
 										<p><b>Autor </b>'.$a5.'</p>
 										<p><b>Cena: </b>'.$a10.'</p>
+										<p><b>Dostępne: </b>'.$a12.'</p>
 										<p><form action="add_to_cart.php" method="POST">
 										<input type="hidden" name="bookid" value='.$a11.'>
 										<input type="hidden" name="price" value='.$a10.'>

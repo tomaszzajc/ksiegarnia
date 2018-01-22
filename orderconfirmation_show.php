@@ -46,9 +46,16 @@
 		$addressid = $_POST['addressid'];
 		
 		$insert="INSERT INTO orderhistory (userid, bookid, quantity, price, addressid) VALUES ('$userid', '$bookid', '$quantity', '$price', '$addressid')";
+		$update="UPDATE `books` SET `quantity`= quantity - 1 WHERE bookid = $bookid";
 		
-		if (mysqli_query($connection, $insert))
+		if (mysqli_query($connection, $insert, $update))
 		{
+			echo $userid;
+			echo $bookid;
+			echo $quantity;
+			echo $price;
+			echo $addressid;
+			
 			echo "<p>Dziękujemy za zakup w naszej księgarni!</p>";
 			//header('Location: cart.php');
 		}
